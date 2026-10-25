@@ -1,0 +1,11 @@
+.no-scroll {
+  overflow: hidden !important;
+}
+
+.fill-primary {
+  fill: var(--bg-primary);
+}
+
+.fill-foreground {
+  fill: var(--text-primary);
+}
