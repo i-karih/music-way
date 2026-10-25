@@ -20,7 +20,8 @@ export default defineNuxtPlugin(() => {
     }
 
     try {
-      const response = await $fetch<{ accessToken: string; refreshToken: string }>(
+      const response = await $fetch<{ accessToken: string;
+refreshToken: string }>(
         '/auth/refresh',
         {
           baseURL: API_PREFIX,
@@ -62,7 +63,9 @@ export default defineNuxtPlugin(() => {
       }
     },
 
-    async onResponseError({ response, options, request }) {
+    async onResponseError({
+ response, options, request 
+}) {
       if (response.status === 401 && !request.toString().includes('/auth/refresh')) {
         const refreshed = await handleRefresh()
 

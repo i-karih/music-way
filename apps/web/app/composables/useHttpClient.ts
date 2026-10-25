@@ -25,21 +25,30 @@ export function useHttpClient() {
      * POST запрос — возвращает Promise
      */
     post: <T>(url: string, body?: RequestBody) => {
-      return $api<T>(url, { method: 'POST', body })
+      return $api<T>(url, {
+ method: 'POST',
+body 
+})
     },
 
     /**
      * PUT запрос — возвращает Promise
      */
     put: <T>(url: string, body?: RequestBody) => {
-      return $api<T>(url, { method: 'PUT', body })
+      return $api<T>(url, {
+ method: 'PUT',
+body 
+})
     },
 
     /**
      * PATCH запрос — возвращает Promise
      */
     patch: <T>(url: string, body?: RequestBody) => {
-      return $api<T>(url, { method: 'PATCH', body })
+      return $api<T>(url, {
+ method: 'PATCH',
+body 
+})
     },
 
     /**

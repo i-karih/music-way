@@ -1,21 +1,62 @@
 <script setup lang="ts"></script>
 
 <template>
-  <svg width="180" height="40" viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="8" y="14" width="4" height="12" rx="2" class="fill-primary" />
-    <rect x="16" y="8" width="4" height="24" rx="2" class="fill-primary" />
-    <rect x="24" y="12" width="4" height="16" rx="2" class="fill-primary" />
-    <rect x="32" y="6" width="4" height="28" rx="2" class="fill-primary" />
-    <rect x="40" y="14" width="4" height="12" rx="2" class="fill-primary" />
-    <text
-      x="52"
-      y="28"
-      font-family="Golos UI, system-ui, sans-serif"
-      font-size="22"
-      font-weight="600"
-      class="fill-foreground"
-    >
-      Music Way
-    </text>
-  </svg>
+	<svg
+		width="180"
+		height="40"
+		viewBox="0 0 180 40"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<rect
+			x="8"
+			y="14"
+			width="4"
+			height="12"
+			rx="2"
+			class="fill-primary"
+		/>
+		<rect
+			x="16"
+			y="8"
+			width="4"
+			height="24"
+			rx="2"
+			class="fill-primary"
+		/>
+		<rect
+			x="24"
+			y="12"
+			width="4"
+			height="16"
+			rx="2"
+			class="fill-primary"
+		/>
+		<rect
+			x="32"
+			y="6"
+			width="4"
+			height="28"
+			rx="2"
+			class="fill-primary"
+		/>
+		<rect
+			x="40"
+			y="14"
+			width="4"
+			height="12"
+			rx="2"
+			class="fill-primary"
+		/>
+		<text
+			x="52"
+			y="28"
+			font-family="Golos UI, system-ui, sans-serif"
+			font-size="22"
+			font-weight="600"
+			class="fill-foreground"
+		>
+			Music Way
+		</text>
+	</svg>
 </template>

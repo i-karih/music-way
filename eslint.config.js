@@ -1,6 +1,8 @@
 import eslint from '@eslint/js'
 import tseslint from 'typescript-eslint'
 import vue from 'eslint-plugin-vue'
+import importNewlines from 'eslint-plugin-import-newlines'
+import stylistic from '@stylistic/eslint-plugin'
 
 // Nuxt/Vue auto-imports
 const nuxtGlobals = {
@@ -56,6 +58,16 @@ const nuxtGlobals = {
 }
 
 export default [
+  {
+    ignores: [
+      '**/node_modules/**',
+      '**/.nuxt/**',
+      '**/.output/**',
+      '**/dist/**',
+      '**/.nitro/**',
+      '**/.cache/**',
+    ],
+  },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   ...vue.configs['flat/recommended'],
@@ -73,6 +85,10 @@ export default [
     },
   },
   {
+    plugins: {
+      'import-newlines': importNewlines,
+      '@stylistic': stylistic,
+    },
     rules: {
       // TypeScript
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
@@ -90,17 +106,38 @@ export default [
       'no-debugger': 'warn',
       'no-unused-vars': 'off',
 
+      // Разбивка импортов: больше 2 — каждый с новой строки
+      'import-newlines/enforce': ['error', {
+ items: 2,
+'max-len': 1000 
+}],
+
+      // Разбивка свойств объекта: каждое с новой строки (если объект multiline)
+      '@stylistic/object-property-newline': ['error', { allowAllPropertiesOnSameLine: false }],
+
       // Форматирование деструктуризации: 3+ свойств — каждое с новой строки
       'object-curly-newline': ['error', {
-        ObjectExpression: { minProperties: 3, multiline: true, consistent: true },
-        ObjectPattern: { minProperties: 3, multiline: true, consistent: true },
-        ImportDeclaration: { minProperties: 3, multiline: true, consistent: true },
-        ExportDeclaration: { minProperties: 3, multiline: true, consistent: true },
+        ObjectExpression: {
+ minProperties: 3,
+multiline: true,
+consistent: true 
+},
+        ObjectPattern: {
+ minProperties: 3,
+multiline: true,
+consistent: true 
+},
+        ImportDeclaration: {
+ minProperties: 3,
+multiline: true,
+consistent: true 
+},
+        ExportDeclaration: {
+ minProperties: 3,
+multiline: true,
+consistent: true 
+},
       }],
-      'object-property-newline': ['error', { allowAllPropertiesOnSameLine: true }],
-    },
-  },
-  {
-    ignores: ['node_modules/', '.nuxt/', '.output/', 'dist/', '.nitro/', '.cache/'],
+          },
   },
 ]

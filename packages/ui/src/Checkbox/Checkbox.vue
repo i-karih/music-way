@@ -1,113 +1,125 @@
 <script setup lang="ts">
-  import CheckboxPrimitive from './CheckboxPrimitive.vue'
-  import type { CheckboxProps, CheckboxSlots, CheckboxModel } from './Checkbox.types'
-  import { Check } from 'lucide-vue-next'
-  import { useCheckboxGroup } from './composables/useCheckboxGroup'
+	import CheckboxPrimitive from './CheckboxPrimitive.vue'
+	import type {
+		CheckboxProps,
+		CheckboxSlots,
+		CheckboxModel,
+	} from './Checkbox.types'
+	import { Check } from 'lucide-vue-next'
+	import { useCheckboxGroup } from './composables/useCheckboxGroup'
 
-  const localModel = defineModel<CheckboxModel>()
+	const localModel = defineModel<CheckboxModel>()
 
-  const { disabled = false, value = '', label = '', error = false } = defineProps<CheckboxProps>()
+	const {
+		disabled = false,
+		value = '',
+		label = '',
+		error = false,
+	} = defineProps<CheckboxProps>()
 
-  const { model, isChecked } = useCheckboxGroup(localModel, () => value)
+	const { model, isChecked } = useCheckboxGroup(localModel, () => value)
 
-  const slots = defineSlots<CheckboxSlots>()
+	const slots = defineSlots<CheckboxSlots>()
 </script>
 
 <template>
-  <CheckboxPrimitive
-    v-model="model"
-    :disabled="disabled"
-    :value="value"
-    :class="[
-      'ui-checkbox',
-      { 'ui-checkbox--disabled': disabled },
-      { 'ui-checkbox--checked': isChecked },
-      { 'ui-checkbox--error': error },
-    ]"
-  >
-    <span class="ui-checkbox__box">
-      <span class="ui-checkbox__icon">
-        <slot name="icon">
-          <Check :stroke-width="3" />
-        </slot>
-      </span>
-    </span>
-    <span v-if="slots.label || label" class="ui-checkbox__label">
-      <slot name="label">
-        {{ label }}
-      </slot>
-    </span>
-  </CheckboxPrimitive>
+	<CheckboxPrimitive
+		v-model="model"
+		:disabled="disabled"
+		:value="value"
+		:class="[
+			'ui-checkbox',
+			{ 'ui-checkbox--disabled': disabled },
+			{ 'ui-checkbox--checked': isChecked },
+			{ 'ui-checkbox--error': error },
+		]"
+	>
+		<span class="ui-checkbox__box">
+			<span class="ui-checkbox__icon">
+				<slot name="icon">
+					<Check :stroke-width="3" />
+				</slot>
+			</span>
+		</span>
+		<span
+			v-if="slots.label || label"
+			class="ui-checkbox__label"
+		>
+			<slot name="label">
+				{{ label }}
+			</slot>
+		</span>
+	</CheckboxPrimitive>
 </template>
 
 <style scoped lang="scss">
-  .ui-checkbox {
-    $self: &;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-150);
-    cursor: pointer;
-    user-select: none;
+	.ui-checkbox {
+		$self: &;
+		display: inline-flex;
+		align-items: center;
+		gap: var(--spacing-150);
+		cursor: pointer;
+		user-select: none;
 
-    &__box {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 20px;
-      height: 20px;
-      border: var(--border-1) solid var(--border-strong);
-      border-radius: var(--corner-8);
-      stroke: var(--text-on-primary);
+		&__box {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 20px;
+			height: 20px;
+			border: var(--border-1) solid var(--border-strong);
+			border-radius: var(--corner-8);
+			stroke: var(--text-on-primary);
 
-      transition:
-        background-color 0.2s,
-        border-color 0.2s;
-    }
+			transition:
+				background-color 0.2s,
+				border-color 0.2s;
+		}
 
-    &__icon {
-      width: 70%;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
+		&__icon {
+			width: 70%;
+			opacity: 0;
+			transition: opacity 0.2s;
+		}
 
-    &:hover:not(&--disabled) {
-      @media (hover: hover) {
-        & #{$self}__box {
-          border-color: var(--border-focus);
-        }
-      }
-    }
+		&:hover:not(&--disabled) {
+			@media (hover: hover) {
+				& #{$self}__box {
+					border-color: var(--border-focus);
+				}
+			}
+		}
 
-    &:has(:focus-visible):not(&--disabled) {
-      & #{$self}__box {
-        outline: var(--border-1) solid var(--border-focus);
-        outline-offset: var(--border-1);
-      }
-    }
+		&:has(:focus-visible):not(&--disabled) {
+			& #{$self}__box {
+				outline: var(--border-1) solid var(--border-focus);
+				outline-offset: var(--border-1);
+			}
+		}
 
-    &--checked {
-      & #{$self}__box {
-        background-color: var(--bg-primary);
-      }
+		&--checked {
+			& #{$self}__box {
+				background-color: var(--bg-primary);
+			}
 
-      & #{$self}__icon {
-        opacity: 1;
-      }
-    }
+			& #{$self}__icon {
+				opacity: 1;
+			}
+		}
 
-    &--error:not(&--disabled):not(&--checked) {
-      & #{$self}__box {
-        border-color: var(--border-danger);
-      }
+		&--error:not(&--disabled):not(&--checked) {
+			& #{$self}__box {
+				border-color: var(--border-danger);
+			}
 
-      & #{$self}__label {
-        color: var(--text-danger);
-      }
-    }
+			& #{$self}__label {
+				color: var(--text-danger);
+			}
+		}
 
-    &--disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-  }
+		&--disabled {
+			opacity: 0.4;
+			cursor: not-allowed;
+		}
+	}
 </style>

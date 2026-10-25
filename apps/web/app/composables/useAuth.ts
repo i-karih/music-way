@@ -6,9 +6,13 @@ export function useAuth() {
   const isAuthenticated = computed(() => !!accessToken.value)
 
   async function login(email: string, password: string) {
-    const response = await $api<{ accessToken: string; refreshToken: string }>('/auth/login', {
+    const response = await $api<{ accessToken: string;
+refreshToken: string }>('/auth/login', {
       method: 'POST',
-      body: { email, password },
+      body: {
+ email,
+password 
+},
     })
 
     accessToken.value = response.accessToken

@@ -1,213 +1,234 @@
 <script setup lang="ts">
-  import type { InputModel, InputProps, InputSlots } from './Input.types'
-  import { IMaskComponent } from 'vue-imask'
+	import type {
+		InputModel,
+		InputProps,
+		InputSlots
+	} from './Input.types';
+	import { IMaskComponent } from 'vue-imask'
 
-  const modelValue = defineModel<InputModel>()
+	const modelValue = defineModel<InputModel>()
 
-  const {
-    size = 'large',
-    placeholder = '',
-    status = 'default',
-    message = '',
-    disabled = false,
-    readonly = false,
-    mask = '',
-    type = 'text',
-    label = '',
-  } = defineProps<InputProps>()
+	const {
+		size = 'large',
+		placeholder = '',
+		status = 'default',
+		message = '',
+		disabled = false,
+		readonly = false,
+		mask = '',
+		type = 'text',
+		label = '',
+	} = defineProps<InputProps>()
 
-  const slots = defineSlots<InputSlots>()
+	const slots = defineSlots<InputSlots>()
 
-  const id = useId()
-  const messageId = computed(() => `${id}-message`)
-  const hasMessage = computed(() => slots.message || message)
+	const id = useId()
+	const messageId = computed(() => `${id}-message`)
+	const hasMessage = computed(() => slots.message || message)
 
-  const inputAttrs = computed(() => ({
-    type,
-    placeholder,
-    readonly,
-    disabled,
-    id,
-    class: 'ui-input__input',
-    'aria-describedby': hasMessage.value ? messageId.value : undefined,
-    ...(typeof mask === 'object' ? mask : { mask }),
-  }))
+	const inputAttrs = computed(() => ({
+		type,
+		placeholder,
+		readonly,
+		disabled,
+		id,
+		class: 'ui-input__input',
+		'aria-describedby': hasMessage.value ? messageId.value : undefined,
+		...(typeof mask === 'object' ? mask : { mask }),
+	}))
 </script>
 
 <template>
-  <div
-    :class="[
-      `ui-input--${size}`,
-      `ui-input--${status}`,
-      { 'ui-input--disabled': disabled },
-      { 'ui-input--readonly': readonly },
-    ]"
-    class="ui-input"
-  >
-    <label v-if="slots.label || label" :for="id" class="ui-input__label">
-      <slot name="label">
-        {{ label }}
-      </slot>
-    </label>
-    <label :for="id" class="ui-input__wrapper">
-      <span v-if="slots.left" class="ui-input__left">
-        <slot name="left"></slot>
-      </span>
-      <input v-if="!mask" v-model="modelValue" v-bind="inputAttrs" />
-      <IMaskComponent
-        v-else
-        v-bind="inputAttrs"
-        :key="JSON.stringify(mask)"
-        v-model="modelValue"
-        unmask
-      />
-      <span v-if="slots.right" class="ui-input__right">
-        <slot name="right"></slot>
-      </span>
-    </label>
-    <span
-      v-if="hasMessage"
-      :id="messageId"
-      :class="[`ui-input__message--${status}`]"
-      class="ui-input__message text-caption"
-    >
-      <slot name="message">
-        {{ message }}
-      </slot>
-    </span>
-  </div>
+	<div
+		:class="[
+			`ui-input--${size}`,
+			`ui-input--${status}`,
+			{ 'ui-input--disabled': disabled },
+			{ 'ui-input--readonly': readonly },
+		]"
+		class="ui-input"
+	>
+		<label
+			v-if="slots.label || label"
+			:for="id"
+			class="ui-input__label"
+		>
+			<slot name="label">
+				{{ label }}
+			</slot>
+		</label>
+		<label
+			:for="id"
+			class="ui-input__wrapper"
+		>
+			<span
+				v-if="slots.left"
+				class="ui-input__left"
+			>
+				<slot name="left" />
+			</span>
+			<input
+				v-if="!mask"
+				v-model="modelValue"
+				v-bind="inputAttrs"
+			>
+			<IMaskComponent
+				v-else
+				v-bind="inputAttrs"
+				:key="JSON.stringify(mask)"
+				v-model="modelValue"
+				unmask
+			/>
+			<span
+				v-if="slots.right"
+				class="ui-input__right"
+			>
+				<slot name="right" />
+			</span>
+		</label>
+		<span
+			v-if="hasMessage"
+			:id="messageId"
+			:class="[`ui-input__message--${status}`]"
+			class="ui-input__message text-caption"
+		>
+			<slot name="message">
+				{{ message }}
+			</slot>
+		</span>
+	</div>
 </template>
 
 <style scoped lang="scss">
-  .ui-input {
-    $self: &;
+	.ui-input {
+		$self: &;
 
-    display: flex;
-    flex-direction: column;
+		display: flex;
+		flex-direction: column;
 
-    &__label {
-      display: inline-block;
-      margin-bottom: var(--spacing-100);
-    }
+		&__label {
+			display: inline-block;
+			margin-bottom: var(--spacing-100);
+		}
 
-    &__wrapper {
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-50);
-      background-color: var(--bg-base);
-      border-radius: var(--corner-12);
-      border: var(--border-1) solid var(--border-default);
-      transition:
-        border-color 0.1s,
-        background-color 0.2s;
+		&__wrapper {
+			display: flex;
+			align-items: center;
+			gap: var(--spacing-50);
+			background-color: var(--bg-base);
+			border-radius: var(--corner-12);
+			border: var(--border-1) solid var(--border-default);
+			transition:
+				border-color 0.1s,
+				background-color 0.2s;
 
-      &:hover {
-        @media (hover: hover) {
-          border-color: var(--border-strong);
-        }
-      }
+			&:hover {
+				@media (hover: hover) {
+					border-color: var(--border-strong);
+				}
+			}
 
-      &:focus-within {
-        border-color: var(--border-focus);
-      }
-    }
+			&:focus-within {
+				border-color: var(--border-focus);
+			}
+		}
 
-    &__left,
-    &__right {
-      color: var(--text-hint);
-    }
+		&__left,
+		&__right {
+			color: var(--text-hint);
+		}
 
-    &__input {
-      display: inline-flex;
-      width: 100%;
-      font-family: inherit;
-      background-color: transparent;
-      border: none;
-      outline: none;
-      color: inherit;
+		&__input {
+			display: inline-flex;
+			width: 100%;
+			font-family: inherit;
+			background-color: transparent;
+			border: none;
+			outline: none;
+			color: inherit;
 
-      &::placeholder {
-        color: var(--text-placeholder);
-      }
+			&::placeholder {
+				color: var(--text-placeholder);
+			}
 
-      &:disabled {
-        pointer-events: none;
-      }
-    }
+			&:disabled {
+				pointer-events: none;
+			}
+		}
 
-    &__message {
-      display: block;
-      padding: 0 var(--spacing-150);
-      margin-top: var(--spacing-50);
+		&__message {
+			display: block;
+			padding: 0 var(--spacing-150);
+			margin-top: var(--spacing-50);
 
-      &--default {
-        color: var(--text-hint);
-      }
+			&--default {
+				color: var(--text-hint);
+			}
 
-      &--success {
-        color: var(--text-success);
-      }
+			&--success {
+				color: var(--text-success);
+			}
 
-      &--error {
-        color: var(--text-danger);
-      }
+			&--error {
+				color: var(--text-danger);
+			}
 
-      &--warning {
-        color: var(--text-warning);
-      }
-    }
+			&--warning {
+				color: var(--text-warning);
+			}
+		}
 
-    &--error {
-      #{$self}__wrapper {
-        border-color: var(--border-danger);
-      }
-    }
+		&--error {
+			#{$self}__wrapper {
+				border-color: var(--border-danger);
+			}
+		}
 
-    &--warning {
-      #{$self}__wrapper {
-        border-color: var(--border-warning);
-      }
-    }
+		&--warning {
+			#{$self}__wrapper {
+				border-color: var(--border-warning);
+			}
+		}
 
-    &--large {
-      #{$self}__wrapper {
-        padding: var(--spacing-150) var(--spacing-200);
-      }
-    }
-    &--medium {
-      #{$self}__wrapper {
-        padding: var(--spacing-100) var(--spacing-150);
-      }
-    }
+		&--large {
+			#{$self}__wrapper {
+				padding: var(--spacing-150) var(--spacing-200);
+			}
+		}
+		&--medium {
+			#{$self}__wrapper {
+				padding: var(--spacing-100) var(--spacing-150);
+			}
+		}
 
-    &--readonly {
-      #{$self}__wrapper {
-        background-color: var(--bg-muted);
+		&--readonly {
+			#{$self}__wrapper {
+				background-color: var(--bg-muted);
 
-        &:hover {
-          @media (hover: hover) {
-            border-color: var(--border-default);
-          }
-        }
-      }
-    }
+				&:hover {
+					@media (hover: hover) {
+						border-color: var(--border-default);
+					}
+				}
+			}
+		}
 
-    &--disabled {
-      #{$self}__wrapper {
-        color: var(--text-disabled);
-        background-color: var(--bg-muted);
-        cursor: not-allowed;
+		&--disabled {
+			#{$self}__wrapper {
+				color: var(--text-disabled);
+				background-color: var(--bg-muted);
+				cursor: not-allowed;
 
-        &:hover {
-          @media (hover: hover) {
-            border-color: var(--border-default);
-          }
-        }
+				&:hover {
+					@media (hover: hover) {
+						border-color: var(--border-default);
+					}
+				}
 
-        &:focus-within {
-          border-color: var(--border-default);
-        }
-      }
-    }
-  }
+				&:focus-within {
+					border-color: var(--border-default);
+				}
+			}
+		}
+	}
 </style>

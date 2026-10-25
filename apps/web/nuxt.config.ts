@@ -20,7 +20,11 @@ export default defineNuxtConfig({
             'Платформа для музыкантов и преподавателей. Храните историю развития в одном месте — даже при смене педагога.',
         },
       ],
-      link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+      link: [{
+ rel: 'icon',
+type: 'image/svg+xml',
+href: '/favicon.svg' 
+}],
     },
   },
   colorMode: {

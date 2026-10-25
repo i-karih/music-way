@@ -26,5 +26,8 @@ export function useCheckboxGroup(
     return Array.isArray(localModel.value) ? localModel.value.includes(value()) : localModel.value
   })
 
-  return { model, isChecked }
+  return {
+ model,
+isChecked 
+}
 }
