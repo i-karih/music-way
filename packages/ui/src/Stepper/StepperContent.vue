@@ -1,4 +1,5 @@
 <script setup lang="ts">
+	import { ref, watch } from 'vue'
 	import type { StepperProps } from './Stepper.types'
 	import UIStepper from './Stepper.vue'
 

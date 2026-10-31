@@ -1,4 +1,5 @@
 <script setup lang="ts">
+	import { inject, computed } from 'vue'
 	import type { TabProps } from './Tab.types'
 	import { TabContextKey } from './Tab.constants'
 
@@ -7,7 +8,7 @@
 	const context = inject(TabContextKey)
 
 	if (!context) {
-		throw new Error('UITab должен использоваться внутри UITabContainer')
+		throw new Error('UITab must be used inside UITabContainer')
 	}
 
 	const isSelected = computed(() => context.model.value === value)
@@ -41,6 +42,8 @@
 </template>
 
 <style scoped lang="scss">
+	@use '../styles/mixins' as *;
+
 	.ui-tab {
 		$self: &;
 		display: inline-flex;
@@ -81,11 +84,7 @@
 		}
 
 		&__radio {
-			width: 1px;
-			height: 1px;
-			position: absolute;
-			opacity: 0;
-			pointer-events: none;
+			@include visually-hidden;
 		}
 	}
 </style>

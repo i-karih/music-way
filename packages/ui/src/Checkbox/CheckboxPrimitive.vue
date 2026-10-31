@@ -20,13 +20,11 @@
 </template>
 
 <style scoped lang="scss">
+	@use '../styles/mixins' as *;
+
 	.ui-checkbox-primitive {
 		&__input {
-			position: absolute;
-			opacity: 0;
-			width: 1px;
-			height: 1px;
-			pointer-events: none;
+			@include visually-hidden;
 		}
 	}
 </style>

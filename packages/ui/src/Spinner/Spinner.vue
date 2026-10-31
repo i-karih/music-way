@@ -1,4 +1,5 @@
 <script setup lang="ts">
+	import { computed } from 'vue'
 	import type { SpinnerSize, SpinnerProps } from './Spinner.types'
 
 	const { size = 'md' } = defineProps<SpinnerProps>()

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+	import { computed } from 'vue'
 	import type { StepperProps } from './Stepper.types'
 
 	const { steps = [], total = 1 } = defineProps<StepperProps>()
@@ -39,6 +40,7 @@
 					<template v-if="steps.length > 0">
 						{{ steps[model - 1] }}
 					</template>
+					<!-- TODO(i18n) -->
 					<template v-else>
 						{{ `Шаг ${model} из ${total}` }}
 					</template>

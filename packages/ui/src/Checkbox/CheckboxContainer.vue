@@ -1,6 +1,7 @@
 <script setup lang="ts">
+	import { provide } from 'vue'
 	import { CheckboxContextKey } from './Checkbox.constants'
-	import type { CheckboxGroupValue, CheckboxContainerProps } from './Checkbox.types';
+	import type { CheckboxGroupValue, CheckboxContainerProps } from './Checkbox.types'
 
 	const { direction = 'vertical' } = defineProps<CheckboxContainerProps>()
 
@@ -18,14 +19,9 @@
 </template>
 
 <style scoped lang="scss">
+	@use '../styles/mixins' as *;
+
 	.ui-checkbox-container {
-		display: flex;
-		gap: var(--spacing-150);
-		&--vertical {
-			flex-direction: column;
-		}
-		&--horizontal {
-			flex-wrap: wrap;
-		}
+		@include direction-container;
 	}
 </style>

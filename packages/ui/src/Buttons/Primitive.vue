@@ -1,14 +1,16 @@
 <script setup lang="ts">
+	import { computed, inject } from 'vue'
 	import type { Component } from 'vue'
-	import { RouterLink } from 'vue-router'
 	import type { ButtonSlots, PrimitiveProps } from './Buttons.types'
+	import { LinkComponentKey } from './Buttons.constants'
 	import { UISpinner } from '../Spinner'
 
 	type As = Component | 'a' | 'button'
 
 	const {
-		isDisabled = false,
-		isLoading = false,
+		as,
+		disabled = false,
+		loading = false,
 		loadingText,
 		to = '',
 		href = '',
@@ -16,21 +18,28 @@
 
 	const slots = defineSlots<ButtonSlots>()
 
+	const injectedLinkComponent = inject(LinkComponentKey, undefined)
+
 	const component = computed<As>(() => {
-		if (to) return RouterLink
+		if (to) return as ?? injectedLinkComponent ?? 'a'
 		if (href) return 'a'
 		return 'button'
 	})
 
+	const hasLinkComponent = computed(() => !!(as ?? injectedLinkComponent))
+
 	const linkProps = computed(() => {
-		if (to) return { to }
+		if (to) {
+			if (hasLinkComponent.value) return { to }
+			return { href: to }
+		}
 		if (href)
 			return {
 				href,
 				target: '_blank',
 				rel: 'noopener noreferrer',
 			}
-		return { disabled: isDisabled || isLoading || undefined }
+		return { disabled: disabled || loading || undefined }
 	})
 </script>
 
@@ -40,12 +49,12 @@
 		v-bind="linkProps"
 		class="ui-button"
 		:class="{
-			'ui-button--loading': isLoading,
-			'ui-button--disabled': isDisabled,
+			'ui-button--loading': loading,
+			'ui-button--disabled': disabled,
 		}"
 	>
 		<span
-			v-if="!isLoading"
+			v-if="!loading"
 			class="ui-button__content"
 		>
 			<span
@@ -90,11 +99,6 @@
 			height: 100%;
 		}
 
-		&:disabled,
-		&--disabled {
-			opacity: 0.7;
-		}
-
 		&__loading {
 			width: 100%;
 			display: flex;
@@ -103,10 +107,14 @@
 			gap: var(--spacing-100);
 		}
 
-		&:disabled,
-		&--disabled,
 		&--loading {
 			pointer-events: none;
+		}
+
+		&:disabled,
+		&--disabled {
+			cursor: not-allowed;
+			opacity: 0.4;
 		}
 	}
 </style>

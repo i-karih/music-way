@@ -1,6 +1,8 @@
 <script setup lang="ts">
+	import { computed } from 'vue'
 	import { Sun, Moon } from 'lucide-vue-next'
 
+	// useColorMode и ClientOnly — Nuxt-specific
 	const colorMode = useColorMode()
 
 	const isDark = computed(() => colorMode.value === 'dark')
@@ -12,6 +14,7 @@
 
 <template>
 	<ClientOnly>
+		<!-- TODO(i18n): aria-label -->
 		<button
 			type="button"
 			class="theme-toggle"
