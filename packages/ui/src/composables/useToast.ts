@@ -3,6 +3,7 @@ import { UISpinner } from '../UI/Spinner'
 import { UIIcon } from '../UI/Icons'
 import { h } from 'vue'
 
+const defaultIcon = h(UIIcon, { name: 'Info' })
 const successIcon = h(UIIcon, { name: 'CircleCheck' })
 const errorIcon = h(UIIcon, { name: 'CircleAlert' })
 const warningIcon = h(UIIcon, { name: 'ClockAlert' })
@@ -10,6 +11,11 @@ const infoIcon = h(UIIcon, { name: 'Sparkles' })
 
 export function useNotifications() {
 	return {
+		message: (message: string) => {
+			toast(message, {
+				icon: defaultIcon
+			})
+		},
 		success: (message: string) => {
 			toast.success(message, {
 				icon: successIcon,

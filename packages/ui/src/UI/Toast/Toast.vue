@@ -32,6 +32,11 @@
 		--width: 320px;
 		--border-radius: var(--corner-12);
 
+		--normal-bg: var(--bg-surface);
+		--normal-border: var(--border-default);
+		--normal-text: var(--text-primary);
+
+
 		--success-text: var(--text-primary);
 		--success-bg: var(--bg-success-subtle);
 		--success-border: var(--border-success);
@@ -47,6 +52,10 @@
 		--error-bg: var(--bg-danger-subtle);
 		--error-border: var(--border-danger);
 		--error-text: var(--text-primary);
+	}
+
+	[data-type='default'] [data-icon] {
+		color:  var(--text-muted);
 	}
 
 	[data-type='success'] [data-icon] {

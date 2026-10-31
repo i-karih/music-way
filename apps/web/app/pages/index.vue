@@ -5,7 +5,7 @@
 	})
 
 	const {
-		error,
+		message,
 		info
 	} = useNotifications()
 </script>
@@ -25,7 +25,7 @@
 			</UIButton>
 
 			<UIButton
-				@click="error('asdasdaa sjhdgajhd gasjhda')"
+				@click="message('asdasdaa sjhdgajhd gasjhda')"
 			>
 				Отправить
 			</UIButton>

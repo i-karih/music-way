@@ -1,4 +1,4 @@
-export type SpinnerSize = 'sm' | 'md' | 'lg' | 'auto'
+export type SpinnerSize = 'small' | 'medium' | 'large' | 'auto'
 
 export type SpinnerProps = {
   size?: SpinnerSize

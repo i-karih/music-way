@@ -8,6 +8,7 @@ import {
 	CircleAlert,
 	ClockAlert,
 	Sparkles,
+	Info,
 } from 'lucide-vue-next'
 
 export const iconsMap = {
@@ -20,6 +21,7 @@ export const iconsMap = {
 	CircleAlert,
 	ClockAlert,
 	Sparkles,
+	Info,
 } as const
 
 export type IconName = keyof typeof iconsMap

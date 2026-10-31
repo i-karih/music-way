@@ -2,12 +2,12 @@
 	import { computed } from 'vue'
 	import type { SpinnerSize, SpinnerProps } from './Spinner.types'
 
-	const { size = 'md' } = defineProps<SpinnerProps>()
+	const { size = 'medium' } = defineProps<SpinnerProps>()
 
 	const sizeMap: Record<SpinnerSize, string> = {
-		sm: '16px',
-		md: '24px',
-		lg: '32px',
+		small: '16px',
+		medium: '24px',
+		large: '32px',
 		auto: '1em',
 	}
 

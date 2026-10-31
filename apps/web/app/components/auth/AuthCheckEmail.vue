@@ -2,14 +2,15 @@
 	import {
 		UICodeInput,
 		UIInlineButton,
-		UIButton
+		UIButton,
+		UISpinner
 	} from '@music-way/ui'
 	import { useCountdown } from '~/composables'
 	import type {AuthStepEmit} from "~/types";
 	import { AuthStep } from '~/constants'
 
 	const TIME_UNTIL_RESEND = 60
-	const NUMBER_ATTEMPS = 5
+	const NUMBER_ATTEMPTS = 5
 
 	const {
 		formatted,
@@ -26,7 +27,7 @@
 
 	const codeInputStatus = ref<'default' | 'danger'>('default')
 
-	const attempt = ref(NUMBER_ATTEMPS)
+	const attempt = ref(NUMBER_ATTEMPTS)
 
 	const codeInput = ref<InstanceType<typeof UICodeInput>>()
 	const code = ref('')
@@ -81,7 +82,10 @@
 					@complete="handlerComplete"
 				/>
 			</div>
-			<div class="auth-check-email__no-email">
+			<div
+				v-if="!isCodeLoading"
+				class="auth-check-email__no-email"
+			>
 				<div
 					v-if="!isExpired"
 					class="auth-check-email__cooldown text-body-m"
@@ -97,6 +101,15 @@
 				>
 					Отправить код ещё раз
 				</UIInlineButton>
+			</div>
+			<div
+				v-else
+				class="auth-check-email__checked"
+			>
+				<UISpinner
+					size="medium"
+				/>
+				<span class="text-body-m">Проверяем код</span>
 			</div>
 			<div class="auth-check-email__actions">
 				<UIButton
