@@ -10,8 +10,8 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@music-way/ui": "workspace:*",
     "@fontsource/golos-ui": "^4.5.3",
+    "@music-way/ui": "workspace:*",
     "@nuxtjs/color-mode": "^4.0.0",
     "@pinia/nuxt": "^0.11.3",
     "@vueuse/core": "^14.3.0",

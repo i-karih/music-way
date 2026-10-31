@@ -4,6 +4,10 @@ import {
 	Music,
 	Guitar,
 	MailCheck,
+	CircleCheck,
+	CircleAlert,
+	ClockAlert,
+	Sparkles,
 } from 'lucide-vue-next'
 
 export const iconsMap = {
@@ -12,6 +16,10 @@ export const iconsMap = {
 	Music,
 	Guitar,
 	MailCheck,
+	CircleCheck,
+	CircleAlert,
+	ClockAlert,
+	Sparkles,
 } as const
 
 export type IconName = keyof typeof iconsMap

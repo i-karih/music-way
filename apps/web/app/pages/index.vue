@@ -1,7 +1,13 @@
 <script setup lang="ts">
+	import { UIButton, useNotifications } from '@music-way/ui'
 	definePageMeta({
 		layout: 'auth',
 	})
+
+	const {
+		error,
+		info
+	} = useNotifications()
 </script>
 
 <template>
@@ -10,7 +16,32 @@
 		dolorem fugiat non quo tenetur? Lorem ipsum dolor sit amet. Lorem ipsum
 		dolor sit amet, consectetur adipisicing elit. Aliquam beatae doloremque
 		excepturi maiores! Nisi, veritatis.
+
+		<div class="buttons">
+			<UIButton
+				@click="info('asdasdaa sjhdgajhd gasjhda')"
+			>
+				Отправить
+			</UIButton>
+
+			<UIButton
+				@click="error('asdasdaa sjhdgajhd gasjhda')"
+			>
+				Отправить
+			</UIButton>
+		</div>
 	</div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+	.buttons {
+		display: flex;
+
+		gap: 8px;
+		margin-top: 24px;
+
+		& button {
+			width: 100%;
+		}
+	}
+</style>

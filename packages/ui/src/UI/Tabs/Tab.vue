@@ -42,7 +42,7 @@
 </template>
 
 <style scoped lang="scss">
-	@use '../styles/mixins' as *;
+	@use '../../styles/mixins' as *;
 
 	.ui-tab {
 		$self: &;
