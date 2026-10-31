@@ -1,3 +1,5 @@
+import { AuthStep } from '~/constants'
+
 export type Role = 'student' | 'teacher'
 
 export type AuthUser = {
@@ -9,4 +11,8 @@ export type AuthUser = {
 
 export type LoginResponse = {
   message: string
+}
+
+export type AuthStepEmit = {
+	changeStep: [value: AuthStep]
 }
