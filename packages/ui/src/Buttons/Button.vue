@@ -3,11 +3,13 @@
 	import type { ButtonProps, ButtonSlots } from './Buttons.types'
 
 	const {
+		as,
 		size = 'large',
 		variant = 'primary',
-		loadingText = 'Loading...',
-		isLoading = false,
-		isDisabled = false,
+		// TODO(i18n)
+		loadingText = 'Загрузка...',
+		loading = false,
+		disabled = false,
 		to = '',
 		href = '',
 	} = defineProps<ButtonProps>()
@@ -17,9 +19,10 @@
 
 <template>
 	<Primitive
+		:as="as"
 		:class="[`ui-button--${variant}`, `ui-button--${size}`]"
-		:is-disabled="isDisabled"
-		:is-loading="isLoading"
+		:disabled="disabled"
+		:loading="loading"
 		:loading-text="loadingText"
 		:href="href"
 		:to="to"
@@ -38,6 +41,7 @@
 
 <style scoped lang="scss">
 	.ui-button {
+		$self: &;
 		color: var(--text-primary);
 		transition:
 			background-color 0.3s,
@@ -49,17 +53,17 @@
 		&--primary {
 			background-color: var(--bg-primary);
 
-			&:hover {
+			&:hover:not(#{$self}--disabled) {
 				@media (hover: hover) {
 					background-color: var(--bg-primary-hover);
 				}
 			}
 
-			&:active {
+			&:active:not(#{$self}--disabled) {
 				background-color: var(--bg-primary-active);
 			}
 
-			&:focus-visible {
+			&:focus-visible:not(#{$self}--disabled) {
 				outline: var(--border-2) solid var(--primary-border-focus);
 				outline-offset: var(--spacing-25);
 			}
@@ -68,17 +72,17 @@
 		&--secondary {
 			border-color: var(--border-default);
 
-			&:hover {
+			&:hover:not(#{$self}--disabled) {
 				@media (hover: hover) {
 					background-color: var(--bg-hover);
 				}
 			}
 
-			&:active {
+			&:active:not(#{$self}--disabled) {
 				background-color: var(--bg-active);
 			}
 
-			&:focus-visible {
+			&:focus-visible:not(#{$self}--disabled) {
 				outline: var(--border-2) solid var(--border-focus);
 				outline-offset: var(--spacing-25);
 			}

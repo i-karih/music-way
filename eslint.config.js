@@ -105,6 +105,7 @@ export default [
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       'no-debugger': 'warn',
       'no-unused-vars': 'off',
+      'no-undef': 'off', // TypeScript handles this
 
       // Разбивка импортов: больше 2 — каждый с новой строки
       'import-newlines/enforce': ['error', {

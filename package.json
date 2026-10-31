@@ -1,6 +1,7 @@
 {
   "name": "music-way",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "pnpm --filter @music-way/web dev",
     "build": "pnpm --filter @music-way/web build",

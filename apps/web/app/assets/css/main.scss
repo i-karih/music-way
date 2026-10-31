@@ -1,10 +1,9 @@
+// 1. Reset — сброс браузерных стилей
 @forward './reset';
-@forward "./settings";
-@forward './palette';
-@forward './colors';
-@forward './spacing';
-@forward './borders';
-@forward "./corners";
-@forward "./typography";
+
+// 2. UI библиотека — переменные, типография
+@forward '@music-way/ui/styles/main';
+
+// 3. Приложение — переопределения, кастомные стили
+@forward './settings';
 @forward './common';
-@forward './shadow';

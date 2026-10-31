@@ -1,12 +1,14 @@
 <script setup lang="ts">
+	import { computed, useId } from 'vue'
 	import type {
 		InputModel,
 		InputProps,
-		InputSlots
-	} from './Input.types';
+		InputSlots,
+		InputEmits
+	} from './Input.types'
 	import { IMaskComponent } from 'vue-imask'
 
-	const modelValue = defineModel<InputModel>()
+	const modelValue = defineModel<InputModel>({required: true})
 
 	const {
 		size = 'large',
@@ -34,8 +36,26 @@
 		id,
 		class: 'ui-input__input',
 		'aria-describedby': hasMessage.value ? messageId.value : undefined,
+	}))
+
+	const maskAttrs = computed(() => ({
+		...inputAttrs.value,
 		...(typeof mask === 'object' ? mask : { mask }),
 	}))
+
+	const emit = defineEmits<InputEmits>()
+
+	const handleInput = () => {
+		emit('input', modelValue.value)
+	}
+
+	const handleBlur = () => {
+		emit('blur', modelValue.value)
+	}
+
+	const handleFocus = () => {
+		emit('focus', modelValue.value)
+	}
 </script>
 
 <template>
@@ -51,7 +71,7 @@
 		<label
 			v-if="slots.label || label"
 			:for="id"
-			class="ui-input__label"
+			class="ui-input__label text-label"
 		>
 			<slot name="label">
 				{{ label }}
@@ -71,10 +91,13 @@
 				v-if="!mask"
 				v-model="modelValue"
 				v-bind="inputAttrs"
+				@input="handleInput"
+				@blur="handleBlur"
+				@focus="handleFocus"
 			>
 			<IMaskComponent
 				v-else
-				v-bind="inputAttrs"
+				v-bind="maskAttrs"
 				:key="JSON.stringify(mask)"
 				v-model="modelValue"
 				unmask
@@ -108,6 +131,7 @@
 
 		&__label {
 			display: inline-block;
+			padding: 0 var(--spacing-50);
 			margin-bottom: var(--spacing-100);
 		}
 

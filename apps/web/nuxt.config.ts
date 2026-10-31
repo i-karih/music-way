@@ -38,7 +38,7 @@ href: '/favicon.svg'
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@use "~/assets/css/_mixins.scss" as *;',
+          additionalData: '@use "@music-way/ui/styles/mixins" as *;',
         },
       },
     },

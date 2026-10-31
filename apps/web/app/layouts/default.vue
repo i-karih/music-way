@@ -2,9 +2,6 @@
 	import TheHeader from '@/components/system/TheHeader.vue'
 	import TheFooter from '~/components/system/TheFooter.vue'
 
-	const userStore = useUserStore()
-
-	console.log(userStore.profile)
 </script>
 
 <template>

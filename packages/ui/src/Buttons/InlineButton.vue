@@ -3,11 +3,13 @@
 	import Primitive from './Primitive.vue'
 
 	const {
+		as,
 		size = 'large',
 		variant = 'primary',
-		loadingText = 'Loading...',
-		isLoading = false,
-		isDisabled = false,
+		// TODO(i18n)
+		loadingText = 'Загрузка...',
+		loading = false,
+		disabled = false,
 		to = '',
 		href = '',
 		underline = false,
@@ -18,6 +20,7 @@
 
 <template>
 	<Primitive
+		:as="as"
 		class="ui-inline-button"
 		:class="[
 			`ui-inline-button--${variant}`,
@@ -26,8 +29,8 @@
 				['ui-inline-button--underline']: underline,
 			},
 		]"
-		:is-disabled="isDisabled"
-		:is-loading="isLoading"
+		:disabled="disabled"
+		:loading="loading"
 		:loading-text="loadingText"
 		:href="href"
 		:to="to"

@@ -5,6 +5,7 @@
 		title = '',
 		description = '',
 		size = 'large',
+		interactive = false,
 	} = defineProps<CardProps>()
 
 	const slots = defineSlots<CardSlots>()
@@ -12,8 +13,11 @@
 
 <template>
 	<div
-		:class="[`ui-card--${size}`]"
-		class="ui-card"
+		:class="[
+			'ui-card',
+			`ui-card--${size}`,
+			{'ui-card--interactive': interactive},
+		]"
 	>
 		<div
 			v-if="title || slots.header"
@@ -35,10 +39,10 @@
 		</div>
 
 		<div
-			v-if="slots.content"
+			v-if="slots.default"
 			class="ui-card__content"
 		>
-			<slot name="content" />
+			<slot />
 		</div>
 
 		<div
@@ -52,24 +56,55 @@
 
 <style scoped lang="scss">
 	.ui-card {
+		--card-padding-l: var(--spacing-300);
+		--card-padding-m: var(--spacing-250);
+		--card-padding-s: var(--spacing-200);
+		@include sm {
+			--card-padding-l: var(--spacing-400);
+			--card-padding-m: var(--spacing-300);
+		}
+
 		display: flex;
 		flex-direction: column;
 		gap: var(--spacing-300);
-		background-color: var(--bg-surface);
-		border: var(--border-1) solid var(--border-default);
+		background-color: var(--card-bg-color, var(--bg-surface));
+		border: var(--border-1) solid var(--card-border, var(--border-default));
 		border-radius: var(--corner-16);
 		box-shadow: var(--shadow-dark);
+		transition: background-color 0.2s, border-color 0.2s;
+
+		&--interactive {
+			cursor: pointer;
+			background-color: var(--card-bg-color, var(--bg-base));
+
+			&:hover {
+				@media(hover: hover) {
+					border-color: var(--card-border-hover, var(--border-strong));
+					background-color: var(--card-bg-color-hover, var(--bg-hover));
+				}
+			}
+
+			&:active {
+				border-color: var(--card-border-pressed, var(--border-strong));
+				background-color: var(--card-bg-color-pressed, var(--bg-muted));
+			}
+		}
+
+		&--disabled {
+			opacity: 0.4;
+			cursor: not-allowed;
+		}
 
 		&--large {
-			padding: var(--spacing-400);
+			padding: var(--card-padding-l);
 		}
 
 		&--medium {
-			padding: var(--spacing-300);
+			padding: var(--card-padding-m);
 		}
 
 		&--small {
-			padding: var(--spacing-200);
+			padding: var(--card-padding-m);
 			border-radius: var(--corner-12);
 		}
 

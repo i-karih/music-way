@@ -24,3 +24,9 @@ export type InputSlots = {
   right?: Slot
   message?: Slot
 }
+
+export type InputEmits = {
+	input: [value: InputModel],
+	blur: [value: InputModel],
+	focus: [value: InputModel],
+}

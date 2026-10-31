@@ -7,7 +7,9 @@
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
-    "./styles": "./src/styles/main.scss"
+    "./styles": "./src/styles/main.scss",
+    "./styles/main": "./src/styles/main.scss",
+    "./styles/mixins": "./src/styles/_mixins.scss"
   },
   "files": [
     "src"
@@ -16,9 +18,11 @@
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix"
   },
+  "dependencies": {
+    "vue-imask": "^7.6.1"
+  },
   "peerDependencies": {
     "vue": "^3.4.0",
-    "vue-router": "^4.0.0 || ^5.0.0",
     "lucide-vue-next": "^1.0.0"
   },
   "devDependencies": {

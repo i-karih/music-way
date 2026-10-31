@@ -4,11 +4,12 @@ export type CardProps = {
   title?: string
   description?: string
   size?: 'large' | 'medium' | 'small'
+	interactive?: boolean
 }
 
 export type CardSlots = {
   header?: Slot
   description?: Slot
-  content?: Slot
+  default?: Slot
   footer?: Slot
 }

@@ -1,16 +1,18 @@
-import type { Slot } from 'vue'
+import type { Component, Slot } from 'vue'
 
 export type ButtonSize = 'small' | 'medium' | 'large'
 export type ButtonVariant = 'primary' | 'secondary'
 
 export type ButtonProps = {
+  /** Компонент ссылки (например NuxtLink). Работает только вместе с `to` */
+  as?: Component
   to?: string
   href?: string
   size?: ButtonSize
   variant?: ButtonVariant
   loadingText?: string
-  isLoading?: boolean
-  isDisabled?: boolean
+  loading?: boolean
+  disabled?: boolean
 }
 
 export type InlineButtonProps = ButtonProps & {

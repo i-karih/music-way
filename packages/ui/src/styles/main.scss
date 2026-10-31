@@ -1,10 +1,11 @@
-@forward './reset';
-@forward "./settings";
+// UI библиотека — переменные и типография
 @forward './palette';
 @forward './colors';
 @forward './spacing';
 @forward './borders';
-@forward "./corners";
-@forward "./typography";
-@forward './common';
+@forward './corners';
+@forward './typography';
 @forward './shadow';
+@forward './breakpoints';
+@forward './transitions';
+@forward './effects';
