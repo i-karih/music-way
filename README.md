@@ -1,75 +1,70 @@
-# Nuxt Minimal Starter
+# Music Way
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Платформа для преподавателей вокала и их учеников. Ученик хранит историю своего развития в одном месте: прогресс, задания, заметки с уроков. При смене педагога история не теряется, новый преподаватель видит ее сразу и не тратит первые занятия на диагностику.
 
-## Setup
+Проект в активной разработке. Сейчас готовы дизайн-система и сценарий входа, следующий этап: кабинет ученика и кабинет преподавателя.
 
-Make sure to install dependencies:
+[Демо: ссылка]
+
+[Скриншоты: светлая и темная тема]
+
+## Стек
+
+- **Фронтенд:** Nuxt 4, Vue 3 (Composition API), TypeScript, Pinia, SCSS
+- **Дизайн-система:** собственная, без готовых UI-библиотек, на дизайн-токенах
+- **Инструменты:** pnpm workspaces, ESLint, Prettier, Stylelint
+- **Бэкенд:** NestJS, Prisma, PostgreSQL, Docker (отдельный репозиторий)
+
+## Структура
+
+Монорепозиторий на pnpm workspaces:
+
+```
+music-way/
+├── apps/
+│   └── web/          # Nuxt-приложение (@music-way/web)
+└── packages/
+    └── ui/           # Дизайн-система (@music-way/ui)
+```
+
+Дизайн-система вынесена в отдельный пакет и подключается в приложение как workspace-зависимость. Так компоненты не зависят от логики приложения, их можно развивать и переиспользовать отдельно.
+
+## Дизайн-система `@music-way/ui`
+
+Все компоненты написаны с нуля, без UI-библиотек.
+
+**Токены** (`packages/ui/src/styles`): палитра и семантические цвета, отступы, скругления, границы, тени, типографика, брейкпоинты, анимации. Светлая и темная тема переключаются через CSS-переменные.
+
+**Компоненты:**
+- `Button`, `InlineButton`: варианты и размеры, состояние загрузки, работают как кнопка, внутренняя ссылка (NuxtLink) или внешняя
+- `Input`: подпись, сообщения и статусы, слоты для иконок, маски ввода
+- `CodeInput`: ввод кода подтверждения
+- `Checkbox`, `CheckboxChip`, `Radio`, `RadioCard`: работают как по отдельности, так и в группе
+- `Tabs`: составной компонент `TabContainer` + `Tab` и упрощенный `Tabs` с массивом опций
+- `Stepper`, `StepperContent`: пошаговые сценарии с анимацией перехода
+- `Card`, `Spinner`, `Icon`, `Logo`, `ThemeToggle`
+
+**Подходы:**
+- Группы (табы, чекбоксы, радио) построены на `provide` / `inject` с типизированными ключами `InjectionKey`: контейнер владеет состоянием, дочерние элементы его читают
+- Внутри переключателей используются нативные `input`, поэтому клавиатура, фокус и работа с формами работают без дополнительного кода
+- У каждого компонента отдельные файлы с типами пропсов и слотов
+
+## Запуск
+
+Нужны Node.js 20+ и pnpm.
 
 ```bash
-# npm
-npm install
-
-# pnpm
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+pnpm dev        # запуск приложения
+pnpm lint       # проверка кода
+pnpm build      # сборка
 ```
 
-## Development Server
+## Планы
 
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- [ ] Кабинет ученика: история занятий, задания, прогресс
+- [ ] Кабинет преподавателя и подключение к карточке ученика
+- [ ] Подключение фронтенда к API авторизации
+- [ ] Тесты на Vitest для компонентов дизайн-системы
+- [ ] Storybook для дизайн-системы
+- [ ] Мультиязычность (i18n)
