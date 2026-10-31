@@ -22,23 +22,16 @@
 </template>
 
 <style scoped lang="scss">
-.ui-radio-container {
-	display: flex;
-	gap: var(--spacing-150);
-	padding: var(--spacing-50) var(--spacing-100);
-	border-radius: var(--corner-12);
+	@use '../styles/mixins' as *;
 
-	&--vertical {
-		flex-direction: column;
-	}
+	.ui-radio-container {
+		@include direction-container;
+		padding: var(--spacing-50) var(--spacing-100);
+		border-radius: var(--corner-12);
 
-	&--horizontal {
-		flex-wrap: wrap;
+		&:has(:focus-visible) {
+			outline: var(--border-1) solid var(--border-focus);
+			outline-offset: var(--border-2);
+		}
 	}
-
-	&:has(:focus-visible) {
-		outline: var(--border-1) solid var(--border-focus);
-		outline-offset: var(--border-2);
-	}
-}
 </style>

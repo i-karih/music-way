@@ -1,5 +1,0 @@
-// Страницы
-@mixin page-padding($top: 4, $bottom: 4) {
-  padding-top: calc(#{$top} * 0.25rem);
-  padding-bottom: calc(#{$bottom} * 0.25rem);
-}

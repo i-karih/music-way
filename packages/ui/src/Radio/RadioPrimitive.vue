@@ -3,8 +3,9 @@
 	const model = defineModel<RadioModel>()
 
 	const {
-		name, value, disabled = false 
+		name, value, disabled = false
 	} = defineProps<RadioPrimitiveProps>()
+
 </script>
 
 <template>
@@ -22,14 +23,14 @@
 </template>
 
 <style scoped lang="scss">
+	@use '../styles/mixins' as *;
+
 	.ui-radio {
+		display: inline-flex;
 		cursor: pointer;
+
 		&__input {
-			position: absolute;
-			opacity: 0;
-			width: 1px;
-			height: 1px;
-			pointer-events: none;
+			@include visually-hidden;
 		}
 	}
 </style>

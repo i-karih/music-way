@@ -5,8 +5,10 @@
 	import {computed, inject} from "vue";
 
 	const {
+		label,
 		value,
-		disabled = false
+		disabled = false,
+		error = false,
 	} = defineProps<RadioButtonProps>()
 
 	const context = inject(RadioContextKey)
@@ -28,12 +30,17 @@
 			`ui-radio-button`,
 			{ 'ui-radio-button--disabled': disabled },
 			{ 'ui-radio-button--checked': isSelected },
+			{ 'ui-radio-button--error': error },
 		]"
 	>
 		<slot name="icon">
 			<span class="ui-radio-button__icon" />
 		</slot>
-		<slot />
+		<span class="ui-radio-button__label">
+			<slot>
+				{{ label }}
+			</slot>
+		</span>
 	</RadioPrimitive>
 </template>
 
@@ -42,7 +49,7 @@
 		$self: &;
 		display: flex;
 		align-items: center;
-		color: var(--text-color-secondary);
+		color: var(--text-secondary);
 		gap: var(--spacing-150);
 		&__icon {
 			display: inline-flex;
@@ -80,6 +87,14 @@
 				&:before {
 					opacity: 1;
 				}
+			}
+		}
+
+		&--error {
+			color: var(--text-danger);
+
+			#{$self}__icon {
+				border-color: var(--border-danger);
 			}
 		}
 

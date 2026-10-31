@@ -3,6 +3,11 @@
 // ===========================================
 
 :root {
+  // Font Weights
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
   // Display
   --typography-display-size: 28px;
   --typography-display-line-height: 120%;
@@ -30,24 +35,25 @@
   --typography-inline-button-line-height: 120%;
 
   --typography-button-weight: 600;
+  --typography-button-l-weight: 600;
   --typography-button-l-letter-spacing: 0;
 
 
   // Body L
   --typography-body-l-size: 16px;
-  --typography-body-l-line-height: 155%;
+  --typography-body-l-line-height: 120%;
   --typography-body-l-weight: 400;
   --typography-body-l-letter-spacing: 0;
 
   // Body M
   --typography-body-m-size: 14px;
-  --typography-body-m-line-height: 150%;
+  --typography-body-m-line-height: 120%;
   --typography-body-m-weight: 400;
   --typography-body-m-letter-spacing: 0;
 
   // Body S
   --typography-body-s-size: 12px;
-  --typography-body-s-line-height: 145%;
+  --typography-body-s-line-height: 120%;
   --typography-body-s-weight: 400;
   --typography-body-s-letter-spacing: 0;
 
@@ -62,6 +68,12 @@
   --typography-caption-line-height: 130%;
   --typography-caption-weight: 600;
   --typography-caption-letter-spacing: 0.6px;
+
+  // Logo
+  --typography-logo-s-size: 16px;
+  --typography-logo-m-size: 20px;
+  --typography-logo-l-size: 28px;
+  --typography-logo-weight: 600;
 }
 
 // ===========================================
@@ -143,4 +155,20 @@
   line-height: var(--typography-caption-line-height);
   font-weight: var(--typography-caption-weight);
   letter-spacing: var(--typography-caption-letter-spacing);
+}
+
+// ===========================================
+// Font Weight Utilities
+// ===========================================
+
+.font-regular {
+  font-weight: var(--font-weight-regular);
+}
+
+.font-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.font-semibold {
+  font-weight: var(--font-weight-semibold);
 }
