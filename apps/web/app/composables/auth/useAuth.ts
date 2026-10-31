@@ -1,38 +1,52 @@
+import type { AuthUser, LoginResponse } from '~/types'
+
+type VerifyResponse = {
+	user: AuthUser
+	accessToken: string
+}
+
 export function useAuth() {
-	const accessToken = useCookie('access_token')
-	const refreshToken = useCookie('refresh_token')
+	const accessToken = useCookie<string | null>('access_token')
 	const { $api } = useNuxtApp()
 
 	const isAuthenticated = computed(() => !!accessToken.value)
 
-	async function login(email: string, password: string) {
-		const response = await $api<{
-			accessToken: string;
-			refreshToken: string
-		}>(
-			'/auth/login',
-			{
-				method: 'POST',
-				body: {
-					email,
-					password,
-				},
-			}
-		)
-
-		accessToken.value = response.accessToken
-		refreshToken.value = response.refreshToken
+	/** Отправляет код для входа на почту */
+	function requestCode(email: string) {
+		return $api<LoginResponse>('/auth/login', {
+			method: 'POST',
+			body: { email },
+		})
 	}
 
-	function logout() {
-		accessToken.value = null
-		refreshToken.value = null
-		navigateTo('/login')
+	/** Проверяет код из письма и сохраняет access-токен. Refresh-токен бэкенд кладет в httpOnly-куку сам */
+	async function verifyCode(email: string, code: string) {
+		const response = await $api<VerifyResponse>('/auth/verify', {
+			method: 'POST',
+			body: {
+				email,
+				code
+			},
+		})
+
+		accessToken.value = response.accessToken
+
+		return response.user
+	}
+
+	async function logout() {
+		try {
+			await $api('/auth/logout', { method: 'POST' })
+		} finally {
+			accessToken.value = null
+			await navigateTo('/auth')
+		}
 	}
 
 	return {
 		isAuthenticated,
-		login,
+		requestCode,
+		verifyCode,
 		logout,
 	}
 }
