@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { Logo, ThemeToggle } from '@music-way/ui'
+	import { UILogo, ThemeToggle } from '@music-way/ui'
 	import { NavigationsForStudents } from '@/constants'
 </script>
 
@@ -12,7 +12,7 @@
 						to="/"
 						class="header__link"
 					>
-						<Logo />
+						<UILogo />
 					</NuxtLink>
 					<nav class="header__nav">
 						<ul class="header__list">
