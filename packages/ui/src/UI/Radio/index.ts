@@ -5,8 +5,8 @@ export { default as UIRadioCard } from './RadioCard.vue'
 export { default as UIRadioCardGroup } from './RadioCardGroup.vue'
 
 export type {
-	RadioModel,
-	RadioCardOption,
-	RadioButtonProps,
 	RadioButtonCardProps,
+	RadioButtonProps,
+	RadioCardOption,
+	RadioModel,
 } from './Radio.types'

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import type { CheckboxPrimitiveProps, CheckboxModel } from './Checkbox.types'
+	import type { CheckboxModel, CheckboxPrimitiveProps } from './Checkbox.types'
 
 	const model = defineModel<CheckboxModel>()
 
@@ -14,7 +14,7 @@
 			:value="value"
 			type="checkbox"
 			class="ui-checkbox-primitive__input"
-		>
+		/>
 		<slot />
 	</label>
 </template>

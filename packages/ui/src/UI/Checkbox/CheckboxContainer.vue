@@ -1,7 +1,12 @@
 <script setup lang="ts">
+	import type {
+		CheckboxContainerProps,
+		CheckboxGroupValue,
+	} from './Checkbox.types'
+
 	import { provide } from 'vue'
+
 	import { CheckboxContextKey } from './Checkbox.constants'
-	import type { CheckboxGroupValue, CheckboxContainerProps } from './Checkbox.types'
 
 	const { direction = 'vertical' } = defineProps<CheckboxContainerProps>()
 

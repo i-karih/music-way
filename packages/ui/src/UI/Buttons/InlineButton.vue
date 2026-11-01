@@ -1,5 +1,6 @@
 <script setup lang="ts">
-	import type { InlineButtonProps, ButtonSlots } from './Buttons.types'
+	import type { ButtonSlots, InlineButtonProps } from './Buttons.types'
+
 	import Primitive from './Primitive.vue'
 
 	const {
@@ -35,15 +36,9 @@
 		:href="href"
 		:to="to"
 	>
-		<slot
-			v-if="slots.left"
-			name="left"
-		/>
+		<slot v-if="slots.left" name="left" />
 		<slot />
-		<slot
-			v-if="slots.right"
-			name="right"
-		/>
+		<slot v-if="slots.right" name="right" />
 	</Primitive>
 </template>
 

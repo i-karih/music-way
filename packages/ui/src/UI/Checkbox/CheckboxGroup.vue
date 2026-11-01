@@ -1,7 +1,8 @@
 <script setup lang="ts">
 	import type { CheckboxGroupProps, CheckboxGroupValue } from './Checkbox.types'
-	import CheckboxChip from './CheckboxChip.vue'
+
 	import Checkbox from './Checkbox.vue'
+	import CheckboxChip from './CheckboxChip.vue'
 	import CheckboxContainer from './CheckboxContainer.vue'
 
 	const {
@@ -20,10 +21,7 @@
 </script>
 
 <template>
-	<CheckboxContainer
-		v-model="model"
-		:direction="direction"
-	>
+	<CheckboxContainer v-model="model" :direction="direction">
 		<component
 			:is="componentMap[type]"
 			v-for="option in options"

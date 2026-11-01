@@ -1,8 +1,9 @@
 <script setup lang="ts">
-	import type {Component} from 'vue'
+	import type { Component } from 'vue'
+
+	import AuthCheckEmail from '~/components/auth/AuthCheckEmail.vue'
+	import AuthEmail from '~/components/auth/AuthEmail.vue'
 	import { AuthStep } from '~/constants'
-	import AuthEmail from "~/components/auth/AuthEmail.vue";
-	import AuthCheckEmail from "~/components/auth/AuthCheckEmail.vue";
 
 	const currentStep = ref<AuthStep>(AuthStep.Email)
 
@@ -15,15 +16,12 @@
 </script>
 
 <template>
-	<transition
-		name="fade"
-		mode="out-in"
-	>
+	<transition name="fade" mode="out-in">
 		<component
 			:is="authMap[currentStep]"
 			:key="currentStep"
 			v-model:email="email"
-			@change-step="(step: AuthStep) => currentStep = step"
+			@change-step="(step: AuthStep) => (currentStep = step)"
 		/>
 	</transition>
 </template>

@@ -1,8 +1,10 @@
 <script setup lang="ts">
+	import type { AlertProps, AlertSlots } from './Alert.types'
+
 	import { computed } from 'vue'
-	import type { AlertSlots, AlertProps } from './Alert.types'
-	import { AlertIconMap } from './Alert.constants'
+
 	import Icon from '../Icons/Icon.vue'
+	import { AlertIconMap } from './Alert.constants'
 
 	const {
 		type = 'default',
@@ -19,46 +21,25 @@
 </script>
 
 <template>
-	<div
-		:role="alertRole"
-		:class="[
-			'ui-alert',
-			`ui-alert--${type}`,
-		]"
-	>
-		<span
-			class="ui-alert__icon"
-			aria-hidden="true"
-		>
+	<div :role="alertRole" :class="['ui-alert', `ui-alert--${type}`]">
+		<span class="ui-alert__icon" aria-hidden="true">
 			<Icon :name="AlertIconMap[type]" />
 		</span>
 
 		<div class="ui-alert__content">
-			<slot
-				v-if="title || slot.header"
-				name="header"
-			>
-				<component
-					:is="titleTag"
-					class="ui-alert__title text-heading-m"
-				>
+			<slot v-if="title || slot.header" name="header">
+				<component :is="titleTag" class="ui-alert__title text-heading-m">
 					{{ title }}
 				</component>
 			</slot>
 
-			<div
-				v-if="message || slot.default"
-				class="ui-alert__message"
-			>
+			<div v-if="message || slot.default" class="ui-alert__message">
 				<slot>
 					{{ message }}
 				</slot>
 			</div>
 
-			<div
-				v-if="slot.footer"
-				class="ui-alert__footer"
-			>
+			<div v-if="slot.footer" class="ui-alert__footer">
 				<slot name="footer" />
 			</div>
 		</div>

@@ -3,14 +3,14 @@ import { useIntervalFn } from '@vueuse/core'
 export function useCountdown(initialSeconds: number) {
 	const remaining = ref(initialSeconds)
 
-	const {
-		pause,
-		resume,
-		isActive
-	} = useIntervalFn(() => {
-		if (remaining.value > 0) remaining.value--
-		else pause()
-	}, 1000, { immediate: false })
+	const { pause, resume, isActive } = useIntervalFn(
+		() => {
+			if (remaining.value > 0) remaining.value--
+			else pause()
+		},
+		1000,
+		{ immediate: false }
+	)
 
 	const hours = computed(() => Math.floor(remaining.value / 3600))
 	const minutes = computed(() => Math.floor((remaining.value % 3600) / 60))
@@ -44,6 +44,6 @@ export function useCountdown(initialSeconds: number) {
 		start: resume,
 		stop: pause,
 		reset,
-		restart
+		restart,
 	}
 }

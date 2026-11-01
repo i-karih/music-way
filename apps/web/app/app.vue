@@ -8,4 +8,3 @@
 	</NuxtLayout>
 	<UIToast />
 </template>
-

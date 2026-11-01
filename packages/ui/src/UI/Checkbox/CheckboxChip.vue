@@ -1,9 +1,10 @@
 <script setup lang="ts">
 	import type {
 		CheckboxChipProps,
-		CheckboxSlots,
 		CheckboxModel,
+		CheckboxSlots,
 	} from './Checkbox.types'
+
 	import CheckboxPrimitive from './CheckboxPrimitive.vue'
 	import { useCheckboxGroup } from './composables/useCheckboxGroup'
 
@@ -34,10 +35,7 @@
 		<slot name="icon">
 			<span class="ui-checkbox-chips__dot" />
 		</slot>
-		<slot
-			v-if="slots.label || label"
-			name="label"
-		>
+		<slot v-if="slots.label || label" name="label">
 			{{ label }}
 		</slot>
 	</CheckboxPrimitive>

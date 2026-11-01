@@ -16,13 +16,10 @@
 		:class="[
 			'ui-card',
 			`ui-card--${size}`,
-			{'ui-card--interactive': interactive},
+			{ 'ui-card--interactive': interactive },
 		]"
 	>
-		<div
-			v-if="title || slots.header"
-			class="ui-card__header"
-		>
+		<div v-if="title || slots.header" class="ui-card__header">
 			<slot name="header">
 				<h2 class="ui-card__title text-heading-l">
 					{{ title }}
@@ -38,17 +35,11 @@
 			</slot>
 		</div>
 
-		<div
-			v-if="slots.default"
-			class="ui-card__content"
-		>
+		<div v-if="slots.default" class="ui-card__content">
 			<slot />
 		</div>
 
-		<div
-			v-if="slots.footer"
-			class="ui-card__footer"
-		>
+		<div v-if="slots.footer" class="ui-card__footer">
 			<slot name="footer" />
 		</div>
 	</div>
@@ -71,14 +62,16 @@
 		border: var(--border-1) solid var(--card-border, var(--border-default));
 		border-radius: var(--corner-16);
 		box-shadow: var(--shadow-dark);
-		transition: background-color 0.2s, border-color 0.2s;
+		transition:
+			background-color 0.2s,
+			border-color 0.2s;
 
 		&--interactive {
 			cursor: pointer;
 			background-color: var(--card-bg-color, var(--bg-base));
 
 			&:hover {
-				@media(hover: hover) {
+				@media (hover: hover) {
 					border-color: var(--card-border-hover, var(--border-strong));
 					background-color: var(--card-bg-color-hover, var(--bg-hover));
 				}

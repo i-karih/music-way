@@ -1,6 +1,8 @@
 <script setup lang="ts">
-	import { provide, toRef } from 'vue'
 	import type { TabContainerProps, TabModel } from './Tab.types'
+
+	import { provide, toRef } from 'vue'
+
 	import { TabContextKey } from './Tab.constants'
 
 	const model = defineModel<TabModel>({ required: true })
@@ -14,10 +16,7 @@
 </script>
 
 <template>
-	<div
-		class="ui-tab-container"
-		role="tablist"
-	>
+	<div class="ui-tab-container" role="tablist">
 		<slot />
 	</div>
 </template>

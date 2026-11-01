@@ -1,6 +1,7 @@
 <script setup lang="ts">
-	import { computed } from 'vue'
 	import type { StepperProps } from './Stepper.types'
+
+	import { computed } from 'vue'
 
 	const { steps = [], total = 1 } = defineProps<StepperProps>()
 

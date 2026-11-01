@@ -30,7 +30,7 @@ export function useAuth() {
 			method: 'POST',
 			body: {
 				email,
-				code
+				code,
 			},
 		})
 

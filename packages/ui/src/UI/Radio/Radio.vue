@@ -1,8 +1,10 @@
 <script setup lang="ts">
-	import RadioPrimitive from './RadioPrimitive.vue'
 	import type { RadioButtonProps } from './Radio.types'
+
+	import { computed, inject } from 'vue'
+
 	import { RadioContextKey } from './Radio.constants'
-	import {computed, inject} from "vue";
+	import RadioPrimitive from './RadioPrimitive.vue'
 
 	const {
 		label,
@@ -59,7 +61,9 @@
 			height: var(--spacing-250);
 			border: var(--border-1) solid var(--border-strong);
 			border-radius: var(--corner-full);
-			transition: background-color 0.2s, border-color 0.2s;
+			transition:
+				background-color 0.2s,
+				border-color 0.2s;
 
 			&:before {
 				content: '';
@@ -73,7 +77,7 @@
 		}
 
 		&:hover:not(&--disabled) {
-			@media(hover: hover) {
+			@media (hover: hover) {
 				#{$self}__icon {
 					border-color: var(--border-focus);
 				}

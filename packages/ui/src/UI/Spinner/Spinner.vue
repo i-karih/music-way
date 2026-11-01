@@ -1,6 +1,7 @@
 <script setup lang="ts">
+	import type { SpinnerProps, SpinnerSize } from './Spinner.types'
+
 	import { computed } from 'vue'
-	import type { SpinnerSize, SpinnerProps } from './Spinner.types'
 
 	const { size = 'medium' } = defineProps<SpinnerProps>()
 
@@ -23,46 +24,11 @@
 		aria-hidden="true"
 		:style="{ width: computedSize, height: computedSize }"
 	>
-		<rect
-			class="bar bar-0"
-			x="0"
-			y="32"
-			width="8"
-			height="28"
-			rx="4"
-		/>
-		<rect
-			class="bar bar-1"
-			x="14"
-			y="8"
-			width="8"
-			height="52"
-			rx="4"
-		/>
-		<rect
-			class="bar bar-2"
-			x="28"
-			y="22"
-			width="8"
-			height="38"
-			rx="4"
-		/>
-		<rect
-			class="bar bar-3"
-			x="42"
-			y="0"
-			width="8"
-			height="60"
-			rx="4"
-		/>
-		<rect
-			class="bar bar-4"
-			x="56"
-			y="28"
-			width="8"
-			height="32"
-			rx="4"
-		/>
+		<rect class="bar bar-0" x="0" y="32" width="8" height="28" rx="4" />
+		<rect class="bar bar-1" x="14" y="8" width="8" height="52" rx="4" />
+		<rect class="bar bar-2" x="28" y="22" width="8" height="38" rx="4" />
+		<rect class="bar bar-3" x="42" y="0" width="8" height="60" rx="4" />
+		<rect class="bar bar-4" x="56" y="28" width="8" height="32" rx="4" />
 	</svg>
 </template>
 

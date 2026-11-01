@@ -1,28 +1,36 @@
 {
-  "name": "music-way",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "pnpm --filter @music-way/web dev",
-    "build": "pnpm --filter @music-way/web build",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write '**/*.{ts,vue,json,md}'"
-  },
-  "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "@stylistic/eslint-plugin": "^5.10.0",
-    "@typescript-eslint/eslint-plugin": "^8.72.0",
-    "@typescript-eslint/parser": "^8.72.0",
-    "eslint": "^10.13.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-import-newlines": "^2.0.0",
-    "eslint-plugin-prettier": "^5.5.7",
-    "eslint-plugin-vue": "^10.11.1",
-    "prettier": "^3.9.10",
-    "stylelint": "^17.16.0",
-    "stylelint-config-html": "^2.0.0",
-    "stylelint-config-standard-scss": "^17.0.0",
-    "typescript-eslint": "^8.72.0"
-  }
+	"name": "music-way",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "pnpm --filter @music-way/web dev",
+		"build": "pnpm --filter @music-way/web build",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"format": "prettier --write '**/*.{js,ts,vue,json,md}'"
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"@stylistic/eslint-plugin": "^5.10.0",
+		"@typescript-eslint/eslint-plugin": "^8.72.0",
+		"@typescript-eslint/parser": "^8.72.0",
+		"@vue/eslint-config-prettier": "^10.2.0",
+		"@vue/eslint-config-typescript": "^14.9.0",
+		"eslint": "^10.13.0",
+		"eslint-config-flat-gitignore": "^2.4.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-import-newlines": "^2.0.0",
+		"eslint-plugin-jsdoc": "^65.4.2",
+		"eslint-plugin-perfectionist": "^5.13.0",
+		"eslint-plugin-prettier": "^5.5.7",
+		"eslint-plugin-regexp": "^3.3.3",
+		"eslint-plugin-sonarjs": "^4.2.2",
+		"eslint-plugin-unicorn": "^79.0.0",
+		"eslint-plugin-vue": "^10.11.1",
+		"prettier": "^3.9.10",
+		"stylelint": "^17.16.0",
+		"stylelint-config-html": "^2.0.0",
+		"stylelint-config-standard-scss": "^17.0.0",
+		"typescript-eslint": "^8.72.0"
+	}
 }

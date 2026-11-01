@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { iconsMap, type IconName } from './Icon.types'
+	import { type IconName, iconsMap } from './Icon.types'
 
 	defineProps<{
 		name: IconName

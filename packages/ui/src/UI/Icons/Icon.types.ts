@@ -1,14 +1,14 @@
 import {
-	Mic2,
 	Check,
-	Music,
-	Guitar,
-	MailCheck,
-	CircleCheck,
 	CircleAlert,
+	CircleCheck,
 	ClockAlert,
-	Sparkles,
+	Guitar,
 	Info,
+	MailCheck,
+	Mic2,
+	Music,
+	Sparkles,
 } from 'lucide-vue-next'
 
 export const iconsMap = {

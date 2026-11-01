@@ -1,11 +1,8 @@
 <script setup lang="ts">
-	import type { RadioPrimitiveProps, RadioModel } from './Radio.types'
+	import type { RadioModel, RadioPrimitiveProps } from './Radio.types'
 	const model = defineModel<RadioModel>()
 
-	const {
-		name, value, disabled = false
-	} = defineProps<RadioPrimitiveProps>()
-
+	const { name, value, disabled = false } = defineProps<RadioPrimitiveProps>()
 </script>
 
 <template>
@@ -17,7 +14,7 @@
 			:disabled="disabled"
 			type="radio"
 			class="ui-radio__input"
-		>
+		/>
 		<slot />
 	</label>
 </template>

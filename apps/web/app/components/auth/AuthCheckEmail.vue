@@ -1,29 +1,24 @@
 <script setup lang="ts">
+	import type { AuthStepEmit } from '~/types'
+
 	import {
+		UIAlert,
+		UIButton,
 		UICodeInput,
 		UIInlineButton,
-		UIButton,
 		UISpinner,
-		UIAlert
 	} from '@music-way/ui'
 	import { useCountdown, usePlural } from '~/composables'
-	import type {AuthStepEmit } from '~/types'
-	import { AuthStep, AuthCodeState } from '~/constants'
+	import { AuthCodeState, AuthStep } from '~/constants'
 
 	// TODO(api) получать с бэка
 	const TIME_UNTIL_RESEND = 60
 	const NUMBER_ATTEMPTS = 5
 
-	const {
-		formatted,
-		start,
-		restart,
-		isExpired
-	} = useCountdown(TIME_UNTIL_RESEND)
+	const { formatted, start, restart, isExpired } =
+		useCountdown(TIME_UNTIL_RESEND)
 
-	const {
-		email
-	} = defineProps<{email: string}>()
+	const { email } = defineProps<{ email: string }>()
 
 	const { plural } = usePlural()
 
@@ -48,11 +43,17 @@
 
 	const statusText = computed(() => {
 		if (isCodeLoading.value) return 'Проверяем код'
-		if (currentState.value === AuthCodeState.Invalid) return currentMessage.value
+		if (currentState.value === AuthCodeState.Invalid)
+			return currentMessage.value
 		return ''
 	})
 
-	const isCodeInputDisabled = computed(() => (currentState.value === AuthCodeState.Failed || attempt.value === 0 || isCodeLoading.value))
+	const isCodeInputDisabled = computed(
+		() =>
+			currentState.value === AuthCodeState.Failed ||
+			attempt.value === 0 ||
+			isCodeLoading.value
+	)
 
 	// TODO(api) заменить заглушку на вызов API
 	const handlerComplete = () => {
@@ -71,17 +72,14 @@
 		restart()
 	}
 
-	onMounted( () => {
+	onMounted(() => {
 		start()
 	})
 </script>
 
 <template>
 	<div class="auth-check-email">
-		<div
-			role="status"
-			class="visually-hidden"
-		>
+		<div role="status" class="visually-hidden">
 			{{ statusText }}
 		</div>
 		<div class="auth-check-email__header">
@@ -96,7 +94,9 @@
 				<UICodeInput
 					ref="codeInput"
 					v-model="code"
-					:status="currentState === AuthCodeState.Invalid ? 'danger' : 'default'"
+					:status="
+						currentState === AuthCodeState.Invalid ? 'danger' : 'default'
+					"
 					:disabled="isCodeInputDisabled"
 					@complete="handlerComplete"
 				>
@@ -108,25 +108,18 @@
 						>
 							Код больше не действует: прошло 10 минут или закончились попытки
 						</UIAlert>
-						<span
-							v-else
-							class="auth-check-email__message"
-						>
+						<span v-else class="auth-check-email__message">
 							{{ currentMessage }}
 						</span>
 					</template>
 				</UICodeInput>
 			</div>
-			<div
-				v-if="!isCodeLoading"
-				class="auth-check-email__no-email"
-			>
-				<div
-					v-if="!isExpired"
-					class="auth-check-email__cooldown text-body-m"
-				>
+			<div v-if="!isCodeLoading" class="auth-check-email__no-email">
+				<div v-if="!isExpired" class="auth-check-email__cooldown text-body-m">
 					<span>Отправить ещё раз через </span>
-					<span class="accent font-medium">{{ formatted.minutes }} : {{ formatted.seconds }}</span>
+					<span class="accent font-medium"
+						>{{ formatted.minutes }} : {{ formatted.seconds }}</span
+					>
 				</div>
 				<UIInlineButton
 					v-else
@@ -137,13 +130,8 @@
 					Отправить код ещё раз
 				</UIInlineButton>
 			</div>
-			<div
-				v-else
-				class="auth-check-email__checked"
-			>
-				<UISpinner
-					size="medium"
-				/>
+			<div v-else class="auth-check-email__checked">
+				<UISpinner size="medium" />
 				<span class="text-body-m">Проверяем код</span>
 			</div>
 			<div class="auth-check-email__actions">

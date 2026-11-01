@@ -1,6 +1,6 @@
 <script setup lang="ts">
+	import { Moon, Sun } from 'lucide-vue-next'
 	import { computed } from 'vue'
-	import { Sun, Moon } from 'lucide-vue-next'
 
 	// useColorMode и ClientOnly — Nuxt-specific
 	const colorMode = useColorMode()
@@ -21,14 +21,8 @@
 			:aria-label="isDark ? 'Включить светлую тему' : 'Включить тёмную тему'"
 			@click="toggle"
 		>
-			<Sun
-				v-if="isDark"
-				class="theme-toggle__icon"
-			/>
-			<Moon
-				v-else
-				class="theme-toggle__icon"
-			/>
+			<Sun v-if="isDark" class="theme-toggle__icon" />
+			<Moon v-else class="theme-toggle__icon" />
 		</button>
 	</ClientOnly>
 </template>

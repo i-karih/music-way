@@ -1,6 +1,8 @@
 <script setup lang="ts">
-	import { inject, computed } from 'vue'
 	import type { TabProps } from './Tab.types'
+
+	import { computed, inject } from 'vue'
+
 	import { TabContextKey } from './Tab.constants'
 
 	const { value, disabled = false } = defineProps<TabProps>()
@@ -37,7 +39,7 @@
 			:value="value"
 			type="radio"
 			class="ui-tab__radio"
-		>
+		/>
 	</label>
 </template>
 

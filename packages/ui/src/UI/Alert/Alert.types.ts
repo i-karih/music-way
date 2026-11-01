@@ -1,4 +1,5 @@
 import type { Slot } from 'vue'
+
 import { AlertIconMap } from './Alert.constants'
 
 export type AlertType = keyof typeof AlertIconMap

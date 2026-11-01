@@ -4,10 +4,7 @@
 		layout: 'auth',
 	})
 
-	const {
-		message,
-		info
-	} = useToast()
+	const { message, info } = useToast()
 </script>
 
 <template>
@@ -18,15 +15,11 @@
 		excepturi maiores! Nisi, veritatis.
 
 		<div class="buttons">
-			<UIButton
-				@click="info('asdasdaa sjhdgajhd gasjhda')"
-			>
+			<UIButton @click="info('asdasdaa sjhdgajhd gasjhda')">
 				Отправить
 			</UIButton>
 
-			<UIButton
-				@click="message('asdasdaa sjhdgajhd gasjhda')"
-			>
+			<UIButton @click="message('asdasdaa sjhdgajhd gasjhda')">
 				Отправить
 			</UIButton>
 		</div>

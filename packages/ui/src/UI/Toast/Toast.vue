@@ -1,6 +1,7 @@
 <script setup lang="ts">
-	import { DEFAULT_POSITION, DEFAULT_DELAY } from './Toast.constants'
 	import { Toaster } from 'vue-sonner'
+
+	import { DEFAULT_DELAY, DEFAULT_POSITION } from './Toast.constants'
 	import 'vue-sonner/style.css'
 </script>
 

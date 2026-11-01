@@ -1,11 +1,13 @@
 <script setup lang="ts">
-	import CheckboxPrimitive from './CheckboxPrimitive.vue'
 	import type {
+		CheckboxModel,
 		CheckboxProps,
 		CheckboxSlots,
-		CheckboxModel,
 	} from './Checkbox.types'
+
 	import { Check } from 'lucide-vue-next'
+
+	import CheckboxPrimitive from './CheckboxPrimitive.vue'
 	import { useCheckboxGroup } from './composables/useCheckboxGroup'
 
 	const localModel = defineModel<CheckboxModel>()
@@ -41,10 +43,7 @@
 				</slot>
 			</span>
 		</span>
-		<span
-			v-if="slots.label || label"
-			class="ui-checkbox__label"
-		>
+		<span v-if="slots.label || label" class="ui-checkbox__label">
 			<slot name="label">
 				{{ label }}
 			</slot>

@@ -1,9 +1,10 @@
 <script setup lang="ts">
-	import type { RadioModel, RadioCardGroupProps } from "./Radio.types";
-	import RadioContainer from "./RadioContainer.vue";
-	import RadioCard from "./RadioCard.vue";
+	import type { RadioCardGroupProps, RadioModel } from './Radio.types'
 
-	const model = defineModel<RadioModel>({required: true})
+	import RadioCard from './RadioCard.vue'
+	import RadioContainer from './RadioContainer.vue'
+
+	const model = defineModel<RadioModel>({ required: true })
 
 	const {
 		name,
@@ -14,11 +15,7 @@
 </script>
 
 <template>
-	<RadioContainer
-		v-model="model"
-		:name="name"
-		:direction="direction"
-	>
+	<RadioContainer v-model="model" :name="name" :direction="direction">
 		<RadioCard
 			v-for="option in options"
 			:key="option.value"

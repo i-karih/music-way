@@ -1,9 +1,11 @@
 <script setup lang="ts">
-	import { computed, inject } from 'vue'
-	import type { Component } from 'vue'
 	import type { ButtonSlots, PrimitiveProps } from './Buttons.types'
-	import { LinkComponentKey } from './Buttons.constants'
+	import type { Component } from 'vue'
+
+	import { computed, inject } from 'vue'
+
 	import { UISpinner } from '../Spinner'
+	import { LinkComponentKey } from './Buttons.constants'
 
 	type As = Component | 'a' | 'button'
 
@@ -53,31 +55,19 @@
 			'ui-button--disabled': disabled,
 		}"
 	>
-		<span
-			v-if="!loading"
-			class="ui-button__content"
-		>
-			<span
-				v-if="slots.left"
-				class="ui-button__left"
-			>
+		<span v-if="!loading" class="ui-button__content">
+			<span v-if="slots.left" class="ui-button__left">
 				<slot name="left" />
 			</span>
 
 			<slot />
 
-			<span
-				v-if="slots.right"
-				class="ui-button__right"
-			>
+			<span v-if="slots.right" class="ui-button__right">
 				<slot name="right" />
 			</span>
 		</span>
 
-		<span
-			v-else
-			class="ui-button__loading"
-		>
+		<span v-else class="ui-button__loading">
 			<UISpinner size="auto" />
 			{{ loadingText }}
 		</span>

@@ -7,5 +7,5 @@ export enum AuthCodeState {
 	Idle,
 	Invalid,
 	Failed,
-	Success
+	Success,
 }

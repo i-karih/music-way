@@ -1,14 +1,12 @@
-import type { Ref } from 'vue'
 import type { IconName } from '../Icons/Icon.types'
-
-type RadioName = string
+import type { Ref } from 'vue'
 
 export type RadioModel = string | number
 
 export type RadioPrimitiveProps = {
-  name: RadioName
-  value: RadioModel
-  disabled?: boolean
+	name: string
+	value: RadioModel
+	disabled?: boolean
 }
 
 export type RadioButtonProps = {
@@ -26,7 +24,7 @@ export type RadioButtonCardProps = RadioButtonProps & {
 }
 
 export type RadioContainerProps = {
-	name: RadioName
+	name: string
 	direction?: 'horizontal' | 'vertical'
 }
 
@@ -49,8 +47,6 @@ export type RadioCardGroupProps = RadioContainerProps & {
 }
 
 export type RadioContext = {
-	name: RadioName
+	name: string
 	model: Ref<RadioModel>
 }
-
-

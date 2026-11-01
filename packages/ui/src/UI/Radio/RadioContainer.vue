@@ -1,22 +1,22 @@
 <script setup lang="ts">
-	import { provide } from 'vue'
 	import type { RadioContainerProps, RadioModel } from './Radio.types'
+
+	import { provide } from 'vue'
+
 	import { RadioContextKey } from './Radio.constants'
 
-	const {name, direction = 'vertical'} = defineProps<RadioContainerProps>()
+	const { name, direction = 'vertical' } = defineProps<RadioContainerProps>()
 
 	const model = defineModel<RadioModel>({ required: true })
 
 	provide(RadioContextKey, {
 		model,
-		name
+		name,
 	})
 </script>
 
 <template>
-	<div
-		:class="[`ui-radio-container`, `ui-radio-container--${direction}`]"
-	>
+	<div :class="[`ui-radio-container`, `ui-radio-container--${direction}`]">
 		<slot />
 	</div>
 </template>

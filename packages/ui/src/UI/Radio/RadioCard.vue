@@ -1,10 +1,12 @@
 <script setup lang="ts">
-	import RadioPrimitive from './RadioPrimitive.vue'
-	import type { RadioButtonCardProps } from "./Radio.types";
-	import {computed, inject} from "vue";
-	import {RadioContextKey} from "./Radio.constants";
+	import type { RadioButtonCardProps } from './Radio.types'
+
+	import { computed, inject } from 'vue'
+
 	import Card from '../Card/Card.vue'
 	import Icon from '../Icons/Icon.vue'
+	import { RadioContextKey } from './Radio.constants'
+	import RadioPrimitive from './RadioPrimitive.vue'
 
 	const {
 		label,
@@ -14,7 +16,7 @@
 		disabled = false,
 		error = false,
 		heading = 'h4',
-		iconName = 'Mic2'
+		iconName = 'Mic2',
 	} = defineProps<RadioButtonCardProps>()
 
 	const context = inject(RadioContextKey)
@@ -37,29 +39,21 @@
 			:size="size"
 			:class="[
 				'ui-radio-card',
-				{'ui-radio-card--selected': isSelected},
-				{'ui-radio-card--disabled': disabled},
-				{'ui-radio-card--error': error}
+				{ 'ui-radio-card--selected': isSelected },
+				{ 'ui-radio-card--disabled': disabled },
+				{ 'ui-radio-card--error': error },
 			]"
 			interactive
 		>
 			<span class="ui-radio-card__content">
 				<slot name="icon">
-					<span
-						:class="[
-							'ui-radio-card__box',
-							`ui-radio-card__box--${size}`
-						]"
-					>
+					<span :class="['ui-radio-card__box', `ui-radio-card__box--${size}`]">
 						<Icon :name="iconName" />
 					</span>
 				</slot>
 				<slot name="header">
 					<span class="ui-radio-card__header">
-						<component
-							:is="heading"
-							class="ui-radio-card__title text-button-l"
-						>
+						<component :is="heading" class="ui-radio-card__title text-button-l">
 							<slot>
 								{{ label }}
 							</slot>
@@ -71,7 +65,6 @@
 							{{ description }}
 						</span>
 					</span>
-
 				</slot>
 			</span>
 		</Card>

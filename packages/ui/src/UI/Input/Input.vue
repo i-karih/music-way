@@ -1,14 +1,15 @@
 <script setup lang="ts">
-	import { computed, useId } from 'vue'
 	import type {
+		InputEmits,
 		InputModel,
 		InputProps,
 		InputSlots,
-		InputEmits
 	} from './Input.types'
+
+	import { computed, useId } from 'vue'
 	import { IMaskComponent } from 'vue-imask'
 
-	const modelValue = defineModel<InputModel>({required: true})
+	const modelValue = defineModel<InputModel>({ required: true })
 
 	const {
 		size = 'large',
@@ -77,14 +78,8 @@
 				{{ label }}
 			</slot>
 		</label>
-		<label
-			:for="id"
-			class="ui-input__wrapper"
-		>
-			<span
-				v-if="slots.left"
-				class="ui-input__left"
-			>
+		<label :for="id" class="ui-input__wrapper">
+			<span v-if="slots.left" class="ui-input__left">
 				<slot name="left" />
 			</span>
 			<input
@@ -94,7 +89,7 @@
 				@input="handleInput"
 				@blur="handleBlur"
 				@focus="handleFocus"
-			>
+			/>
 			<IMaskComponent
 				v-else
 				v-bind="maskAttrs"
@@ -102,10 +97,7 @@
 				v-model="modelValue"
 				unmask
 			/>
-			<span
-				v-if="slots.right"
-				class="ui-input__right"
-			>
+			<span v-if="slots.right" class="ui-input__right">
 				<slot name="right" />
 			</span>
 		</label>

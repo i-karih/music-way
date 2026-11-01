@@ -1,29 +1,29 @@
 {
-  "name": "@music-way/web",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "dependencies": {
-    "@fontsource/golos-ui": "^4.5.3",
-    "@music-way/ui": "workspace:*",
-    "@nuxtjs/color-mode": "^4.0.0",
-    "@pinia/nuxt": "^0.11.3",
-    "@vueuse/core": "^14.3.0",
-    "lucide-vue-next": "^1.0.0",
-    "nuxt": "^4.4.2",
-    "pinia": "^3.0.4",
-    "vue": "^3.5.32",
-    "vue-imask": "^7.6.1",
-    "vue-router": "^5.0.4"
-  },
-  "devDependencies": {
-    "sass": "^1.99.0",
-    "vite-tsconfig-paths": "^6.1.1"
-  }
+	"name": "@music-way/web",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare"
+	},
+	"dependencies": {
+		"@fontsource/golos-ui": "^4.5.3",
+		"@music-way/ui": "workspace:*",
+		"@nuxtjs/color-mode": "^4.0.0",
+		"@pinia/nuxt": "^0.11.3",
+		"@vueuse/core": "^14.3.0",
+		"lucide-vue-next": "^1.0.0",
+		"nuxt": "^4.4.2",
+		"pinia": "^3.0.4",
+		"vue": "^3.5.32",
+		"vue-imask": "^7.6.1",
+		"vue-router": "^5.0.4"
+	},
+	"devDependencies": {
+		"sass": "^1.99.0",
+		"vite-tsconfig-paths": "^6.1.1"
+	}
 }

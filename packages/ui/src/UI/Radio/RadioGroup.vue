@@ -1,24 +1,21 @@
 <script setup lang="ts">
-	import type { RadioModel, RadioGroupProps } from "./Radio.types";
-	import RadioContainer from "./RadioContainer.vue";
-	import Radio from "./Radio.vue";
+	import type { RadioGroupProps, RadioModel } from './Radio.types'
 
-	const model = defineModel<RadioModel>({required: true})
+	import Radio from './Radio.vue'
+	import RadioContainer from './RadioContainer.vue'
+
+	const model = defineModel<RadioModel>({ required: true })
 
 	const {
 		name,
 		options,
 		direction = 'vertical',
 		disabled = false,
-	} =  defineProps<RadioGroupProps>()
+	} = defineProps<RadioGroupProps>()
 </script>
 
 <template>
-	<RadioContainer
-		v-model="model"
-		:name="name"
-		:direction="direction"
-	>
+	<RadioContainer v-model="model" :name="name" :direction="direction">
 		<Radio
 			v-for="option in options"
 			:key="option.value"

@@ -1,10 +1,12 @@
-import { toast } from 'vue-sonner'
-import { UISpinner } from '../UI/Spinner'
-import { UIIcon } from '../UI/Icons'
-import { AlertIconMap } from '../UI/Alert/Alert.constants'
 import { h } from 'vue'
+import { toast } from 'vue-sonner'
 
-const icon = (name: keyof typeof AlertIconMap) => () => h(UIIcon, { name: AlertIconMap[name] })
+import { AlertIconMap } from '../UI/Alert/Alert.constants'
+import { UIIcon } from '../UI/Icons'
+import { UISpinner } from '../UI/Spinner'
+
+const icon = (name: keyof typeof AlertIconMap) => () =>
+	h(UIIcon, { name: AlertIconMap[name] })
 
 export function useToast() {
 	return {

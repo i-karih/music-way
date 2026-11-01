@@ -1,6 +1,8 @@
 <script setup lang="ts">
-	import { ref, watch } from 'vue'
 	import type { StepperProps } from './Stepper.types'
+
+	import { ref, watch } from 'vue'
+
 	import UIStepper from './Stepper.vue'
 
 	const { steps = [], total = 1 } = defineProps<StepperProps>()
@@ -35,14 +37,8 @@
 			/>
 		</div>
 
-		<Transition
-			:name="direction"
-			mode="out-in"
-		>
-			<div
-				:key="model"
-				class="ui-stepper-content__body"
-			>
+		<Transition :name="direction" mode="out-in">
+			<div :key="model" class="ui-stepper-content__body">
 				<slot :name="`step-${model}`" />
 			</div>
 		</Transition>

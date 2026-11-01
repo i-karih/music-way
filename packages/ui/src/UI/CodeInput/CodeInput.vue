@@ -1,11 +1,7 @@
 <script setup lang="ts">
-	import {
-		useId,
-		ref,
-		computed,
-		watch
-	} from 'vue'
 	import type { CodeInputProps, CodeInputSlot } from './CodeInput.types'
+
+	import { computed, ref, useId, watch } from 'vue'
 
 	const {
 		length = 6,
@@ -13,7 +9,7 @@
 		message = '',
 		disabled = false,
 		// TODO(i18n)
-		label = 'Код подтверждения'
+		label = 'Код подтверждения',
 	} = defineProps<CodeInputProps>()
 
 	const slot = defineSlots<CodeInputSlot>()
@@ -74,7 +70,7 @@
 
 	defineExpose({
 		reset,
-		focus
+		focus,
 	})
 </script>
 
@@ -83,7 +79,7 @@
 		:class="[
 			'ui-code-input',
 			`ui-code-input--${status}`,
-			{ 'ui-code-input--disabled': disabled }
+			{ 'ui-code-input--disabled': disabled },
 		]"
 	>
 		<div class="ui-code-input__group">
@@ -103,18 +99,20 @@
 				@blur="isFocused = false"
 				@click="moveCaretToEnd"
 				@select="moveCaretToEnd"
-			>
+			/>
 			<div
 				v-for="i in length"
 				:key="i"
 				:class="[
 					'ui-code-input__cell',
 					{ 'ui-code-input__cell--active': isFocused && i - 1 === activeIndex },
-					{ 'ui-code-input__cell--filled': code[i - 1] }
+					{ 'ui-code-input__cell--filled': code[i - 1] },
 				]"
 				aria-hidden="true"
 			>
-				<span class="ui-code-input__digit text-heading-l">{{ code[i - 1] }}</span>
+				<span class="ui-code-input__digit text-heading-l">{{
+					code[i - 1]
+				}}</span>
 				<span
 					v-if="isFocused && i - 1 === activeIndex && !code[i - 1]"
 					class="ui-code-input__caret"
@@ -170,7 +168,9 @@
 			background-color: var(--bg-base);
 			border: var(--border-1) solid var(--border-strong);
 			border-radius: var(--corner-12);
-			transition: border-color 0.2s, box-shadow 0.2s;
+			transition:
+				border-color 0.2s,
+				box-shadow 0.2s;
 
 			@include sm {
 				height: 56px;
@@ -198,8 +198,13 @@
 		}
 
 		@keyframes blink {
-			0%, 100% { opacity: 1; }
-			50% { opacity: 0; }
+			0%,
+			100% {
+				opacity: 1;
+			}
+			50% {
+				opacity: 0;
+			}
 		}
 
 		&__message {
