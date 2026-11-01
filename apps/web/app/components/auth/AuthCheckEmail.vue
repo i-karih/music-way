@@ -10,6 +10,7 @@
 	import type {AuthStepEmit } from '~/types'
 	import { AuthStep, AuthCodeState } from '~/constants'
 
+	// TODO(api) получать с бэка
 	const TIME_UNTIL_RESEND = 60
 	const NUMBER_ATTEMPTS = 5
 
@@ -41,19 +42,19 @@
 			const word = plural(attempt.value, ['попытка', 'попытки', 'попыток'])
 			return `Неверный код. Осталось ${attempt.value} ${word}.`
 		}
+		// TODO(api) время жизни кода с бэка
 		return 'Код действует 10 минут. Нет письма — проверь «Спам».'
 	})
 
 	const isCodeInputDisabled = computed(() => (currentState.value === AuthCodeState.Failed || attempt.value === 0 || isCodeLoading.value))
 
+	// TODO(api) заменить заглушку на вызов API
 	const handlerComplete = () => {
 		isCodeLoading.value = true
 		setTimeout(() => {
 			isCodeLoading.value = false
 			codeInput.value?.reset()
 		}, 2_000)
-		return
-		// emit('changeStep', AuthStep.Loading)
 	}
 
 	const handlerBackStep = () => {
@@ -75,6 +76,7 @@
 			<h2 class="auth-check-email__title text-heading-l">
 				Введи код из письма
 			</h2>
+			<!-- TODO(api) длина кода с бэка -->
 			<p class="auth-check-email__description text-body-m">
 				Отправили 6 цифр на <span class="accent font-medium">{{ email }}</span>.
 			</p>
@@ -87,6 +89,7 @@
 					@complete="handlerComplete"
 				>
 					<template #message>
+						<!-- TODO(api) время жизни кода с бэка -->
 						<UIAlert
 							v-if="currentState === AuthCodeState.Failed"
 							type="warning"
