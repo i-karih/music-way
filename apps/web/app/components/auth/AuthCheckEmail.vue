@@ -40,10 +40,16 @@
 	const currentMessage = computed(() => {
 		if (currentState.value === AuthCodeState.Invalid) {
 			const word = plural(attempt.value, ['попытка', 'попытки', 'попыток'])
-			return `Неверный код. Осталось ${attempt.value} ${word}.`
+			return `Неверный код. Осталось ${attempt.value} ${word}`
 		}
 		// TODO(api) время жизни кода с бэка
-		return 'Код действует 10 минут. Нет письма — проверь «Спам».'
+		return 'Код действует 10 минут. Нет письма — проверь «Спам»'
+	})
+
+	const statusText = computed(() => {
+		if (isCodeLoading.value) return 'Проверяем код'
+		if (currentState.value === AuthCodeState.Invalid) return currentMessage.value
+		return ''
 	})
 
 	const isCodeInputDisabled = computed(() => (currentState.value === AuthCodeState.Failed || attempt.value === 0 || isCodeLoading.value))
@@ -72,13 +78,19 @@
 
 <template>
 	<div class="auth-check-email">
+		<div
+			role="status"
+			class="visually-hidden"
+		>
+			{{ statusText }}
+		</div>
 		<div class="auth-check-email__header">
 			<h2 class="auth-check-email__title text-heading-l">
 				Введи код из письма
 			</h2>
 			<!-- TODO(api) длина кода с бэка -->
 			<p class="auth-check-email__description text-body-m">
-				Отправили 6 цифр на <span class="accent font-medium">{{ email }}</span>.
+				Отправили 6 цифр на <span class="accent font-medium">{{ email }}</span>
 			</p>
 			<div class="auth-check-email__code">
 				<UICodeInput
@@ -94,7 +106,7 @@
 							v-if="currentState === AuthCodeState.Failed"
 							type="warning"
 						>
-							Код больше не действует: прошло 10 минут или закончились попытки.
+							Код больше не действует: прошло 10 минут или закончились попытки
 						</UIAlert>
 						<span
 							v-else
@@ -127,7 +139,6 @@
 			</div>
 			<div
 				v-else
-				role="status"
 				class="auth-check-email__checked"
 			>
 				<UISpinner
@@ -150,6 +161,10 @@
 </template>
 
 <style scoped lang="scss">
+	.visually-hidden {
+		@include visually-hidden;
+	}
+
 	.auth-check-email {
 		&__title,
 		&__description {

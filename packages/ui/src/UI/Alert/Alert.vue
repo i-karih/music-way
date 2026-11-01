@@ -99,33 +99,33 @@
 		}
 
 		&--default {
-			--border-color: var(--border-default);
-			--bg-color: var(--bg-surface);
-			--icon-color: var(--text-muted);
+			--bg-color: var(--status-default-bg);
+			--border-color: var(--status-default-border);
+			--icon-color: var(--status-default-icon);
 		}
 
 		&--success {
-			--border-color: var(--border-success);
-			--bg-color: var(--bg-success-subtle);
-			--icon-color: var(--text-success);
+			--bg-color: var(--status-success-bg);
+			--border-color: var(--status-success-border);
+			--icon-color: var(--status-success-icon);
 		}
 
 		&--warning {
-			--border-color: var(--border-warning);
-			--bg-color: var(--bg-warning-subtle);
-			--icon-color: var(--text-warning);
+			--bg-color: var(--status-warning-bg);
+			--border-color: var(--status-warning-border);
+			--icon-color: var(--status-warning-icon);
 		}
 
 		&--info {
-			--border-color: var(--border-focus);
-			--bg-color: var(--bg-primary-subtle);
-			--icon-color: var(--text-link);
+			--bg-color: var(--status-info-bg);
+			--border-color: var(--status-info-border);
+			--icon-color: var(--status-info-icon);
 		}
 
 		&--danger {
-			--border-color: var(--border-danger);
-			--bg-color: var(--bg-danger-subtle);
-			--icon-color: var(--text-danger);
+			--bg-color: var(--status-danger-bg);
+			--border-color: var(--status-danger-border);
+			--icon-color: var(--status-danger-icon);
 		}
 	}
 </style>

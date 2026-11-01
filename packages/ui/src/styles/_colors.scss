@@ -79,4 +79,25 @@
   --effect-glow-top: var(--violet-600-22);
   --effect-glow-bottom: var(--teal-600-12);
   --effect-shadow: var(--black-40);
+
+  // Статусы (для Alert, Toast, Badge и т.д.)
+  --status-default-bg: var(--bg-surface);
+  --status-default-border: var(--border-default);
+  --status-default-icon: var(--text-muted);
+
+  --status-success-bg: var(--bg-success-subtle);
+  --status-success-border: var(--border-success);
+  --status-success-icon: var(--text-success);
+
+  --status-info-bg: var(--bg-primary-subtle);
+  --status-info-border: var(--border-focus);
+  --status-info-icon: var(--text-link);
+
+  --status-warning-bg: var(--bg-warning-subtle);
+  --status-warning-border: var(--border-warning);
+  --status-warning-icon: var(--text-warning);
+
+  --status-danger-bg: var(--bg-danger-subtle);
+  --status-danger-border: var(--border-danger);
+  --status-danger-icon: var(--text-danger);
 }

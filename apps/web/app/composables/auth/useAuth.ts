@@ -6,7 +6,12 @@ type VerifyResponse = {
 }
 
 export function useAuth() {
-	const accessToken = useCookie<string | null>('access_token')
+	// TODO(api) время жизни токена с бэка
+	const accessToken = useCookie<string | null>('access_token', {
+		maxAge: 60 * 15,
+		sameSite: 'lax',
+		secure: !import.meta.dev,
+	})
 	const { $api } = useNuxtApp()
 
 	const isAuthenticated = computed(() => !!accessToken.value)

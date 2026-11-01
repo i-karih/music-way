@@ -33,45 +33,45 @@
 			--width: 320px;
 			--border-radius: var(--corner-12);
 
-			--normal-bg: var(--bg-surface);
-			--normal-border: var(--border-default);
+			--normal-bg: var(--status-default-bg);
+			--normal-border: var(--status-default-border);
 			--normal-text: var(--text-primary);
 
+			--success-bg: var(--status-success-bg);
+			--success-border: var(--status-success-border);
 			--success-text: var(--text-primary);
-			--success-bg: var(--bg-success-subtle);
-			--success-border: var(--border-success);
 
-			--info-bg: var(--bg-primary-subtle);
-			--info-border: var(--border-focus);
+			--info-bg: var(--status-info-bg);
+			--info-border: var(--status-info-border);
 			--info-text: var(--text-primary);
 
-			--warning-bg: var(--bg-warning-subtle);
-			--warning-border: var(--border-warning);
+			--warning-bg: var(--status-warning-bg);
+			--warning-border: var(--status-warning-border);
 			--warning-text: var(--text-primary);
 
-			--error-bg: var(--bg-danger-subtle);
-			--error-border: var(--border-danger);
+			--error-bg: var(--status-danger-bg);
+			--error-border: var(--status-danger-border);
 			--error-text: var(--text-primary);
 		}
 
 		[data-type='default'] [data-icon] {
-			color: var(--text-muted);
+			color: var(--status-default-icon);
 		}
 
 		[data-type='success'] [data-icon] {
-			color: var(--text-success);
+			color: var(--status-success-icon);
 		}
 
 		[data-type='info'] [data-icon] {
-			color: var(--text-link);
+			color: var(--status-info-icon);
 		}
 
 		[data-type='warning'] [data-icon] {
-			color: var(--text-warning);
+			color: var(--status-warning-icon);
 		}
 
 		[data-type='error'] [data-icon] {
-			color: var(--text-danger);
+			color: var(--status-danger-icon);
 		}
 	}
 </style>
