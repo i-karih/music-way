@@ -3,11 +3,12 @@
 		UICodeInput,
 		UIInlineButton,
 		UIButton,
-		UISpinner
+		UISpinner,
+		UIAlert
 	} from '@music-way/ui'
-	import { useCountdown } from '~/composables'
-	import type {AuthStepEmit} from "~/types";
-	import { AuthStep } from '~/constants'
+	import { useCountdown, usePlural } from '~/composables'
+	import type {AuthStepEmit } from "~/types";
+	import { AuthStep, AuthCodeState } from '~/constants'
 
 	const TIME_UNTIL_RESEND = 60
 	const NUMBER_ATTEMPTS = 5
@@ -23,22 +24,27 @@
 		email
 	} = defineProps<{email: string | number}>()
 
-	const emit = defineEmits<AuthStepEmit>()
+	const { plural } = usePlural()
 
-	const codeInputStatus = ref<'default' | 'danger'>('default')
+	const emit = defineEmits<AuthStepEmit>()
 
 	const attempt = ref(NUMBER_ATTEMPTS)
 
 	const codeInput = ref<InstanceType<typeof UICodeInput>>()
 	const code = ref('')
 	const isCodeLoading = ref<boolean>(false)
-	const isCodeTimeOut = ref<boolean>(false)
 
-	const isCodeInputDisabled = computed(() => (isCodeTimeOut.value || attempt.value === 0 || isCodeLoading.value))
+	const currentState = ref<AuthCodeState>(AuthCodeState.Idle)
 
-	const codeInputMessage = computed(() => (
-		codeInputStatus.value === "default" ?
-			'Код действует 10 минут. Нет письма — проверь «Спам».' : `Неверный код. Осталось ${attempt.value} попытки.`))
+	const currentMessage = computed(() => {
+		if (currentState.value === AuthCodeState.Invalid) {
+			const word = plural(attempt.value, ['попытка', 'попытки', 'попыток'])
+			return `Неверный код. Осталось ${attempt.value} ${word}.`
+		}
+		return 'Код действует 10 минут. Нет письма — проверь «Спам».'
+	})
+
+	const isCodeInputDisabled = computed(() => (currentState.value === AuthCodeState.Failed || attempt.value === 0 || isCodeLoading.value))
 
 	const handlerComplete = () => {
 		isCodeLoading.value = true
@@ -76,11 +82,25 @@
 				<UICodeInput
 					ref="codeInput"
 					v-model="code"
-					:status="codeInputStatus"
-					:message="codeInputMessage"
+					:status="currentState === AuthCodeState.Invalid ? 'danger' : 'default'"
 					:disabled="isCodeInputDisabled"
 					@complete="handlerComplete"
-				/>
+				>
+					<template #message>
+						<UIAlert
+							v-if="currentState === AuthCodeState.Failed"
+							type="warning"
+						>
+							Код больше не действует: прошло 10 минут или закончились попытки.
+						</UIAlert>
+						<span
+							v-else
+							class="auth-check-email__message"
+						>
+							{{ currentMessage }}
+						</span>
+					</template>
+				</UICodeInput>
 			</div>
 			<div
 				v-if="!isCodeLoading"

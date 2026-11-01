@@ -193,7 +193,7 @@
 				color: var(--text-success);
 			}
 
-			&--error {
+			&--danger {
 				color: var(--text-danger);
 			}
 
@@ -202,7 +202,7 @@
 			}
 		}
 
-		&--error {
+		&--danger {
 			#{$self}__wrapper {
 				border-color: var(--border-danger);
 			}

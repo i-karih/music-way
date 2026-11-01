@@ -10,7 +10,7 @@ export type InputProps = {
   label?: string
   disabled?: boolean
   size?: 'large' | 'medium'
-  status?: 'default' | 'success' | 'warning' | 'error'
+  status?: 'default' | 'success' | 'warning' | 'danger'
   message?: string
   placeholder?: string
   type?: 'text' | 'password' | 'email'

@@ -1,7 +1,11 @@
 export enum AuthStep {
 	Email = 'email',
 	CheckEmail = 'check-email',
-	Loading = 'loading',
-	Success = 'success',
-	Expired = 'expired',
+}
+
+export enum AuthCodeState {
+	Idle,
+	Invalid,
+	Failed,
+	Success
 }

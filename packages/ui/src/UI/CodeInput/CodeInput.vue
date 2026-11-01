@@ -5,7 +5,7 @@
 		computed,
 		watch
 	} from 'vue'
-	import type { CodeInputProps } from './CodeInput.type'
+	import type { CodeInputProps, CodeInputSlot } from './CodeInput.types'
 
 	const {
 		length = 6,
@@ -15,6 +15,8 @@
 		// TODO(i18n)
 		label = 'Код подтверждения'
 	} = defineProps<CodeInputProps>()
+
+	const slot = defineSlots<CodeInputSlot>()
 
 	const emit = defineEmits<{
 		complete: [code: string]
@@ -79,12 +81,12 @@
 <template>
 	<div
 		:class="[
-			'code-input',
-			`code-input--${status}`,
-			{ 'code-input--disabled': disabled }
+			'ui-code-input',
+			`ui-code-input--${status}`,
+			{ 'ui-code-input--disabled': disabled }
 		]"
 	>
-		<div class="code-input__group">
+		<div class="ui-code-input__group">
 			<input
 				:id="id"
 				ref="input"
@@ -95,7 +97,7 @@
 				:disabled="disabled"
 				:aria-label="label"
 				:aria-describedby="message ? `${id}-message` : undefined"
-				class="code-input__native"
+				class="ui-code-input__native"
 				@input="onInput"
 				@focus="onFocus"
 				@blur="isFocused = false"
@@ -106,31 +108,33 @@
 				v-for="i in length"
 				:key="i"
 				:class="[
-					'code-input__cell',
-					{ 'code-input__cell--active': isFocused && i - 1 === activeIndex },
-					{ 'code-input__cell--filled': code[i - 1] }
+					'ui-code-input__cell',
+					{ 'ui-code-input__cell--active': isFocused && i - 1 === activeIndex },
+					{ 'ui-code-input__cell--filled': code[i - 1] }
 				]"
 				aria-hidden="true"
 			>
-				<span class="code-input__digit text-heading-l">{{ code[i - 1] }}</span>
+				<span class="ui-code-input__digit text-heading-l">{{ code[i - 1] }}</span>
 				<span
 					v-if="isFocused && i - 1 === activeIndex && !code[i - 1]"
-					class="code-input__caret"
+					class="ui-code-input__caret"
 				/>
 			</div>
 		</div>
 		<p
-			v-if="message"
+			v-if="message || slot.message"
 			:id="`${id}-message`"
-			class="code-input__message text-body-m"
+			class="ui-code-input__message text-body-m"
 		>
-			{{ message }}
+			<slot name="message">
+				{{ message }}
+			</slot>
 		</p>
 	</div>
 </template>
 
 <style scoped lang="scss">
-	.code-input {
+	.ui-code-input {
 		$self: &;
 
 		&__group {

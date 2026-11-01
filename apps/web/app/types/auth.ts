@@ -1,4 +1,4 @@
-import { AuthStep } from '~/constants'
+import { AuthStep, AuthCodeState } from '~/constants'
 
 export type Role = 'student' | 'teacher'
 

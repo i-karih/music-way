@@ -46,7 +46,7 @@
 					label="Email"
 					placeholder="name@example.com"
 					:message="errorMessage"
-					:status="errorMessage ? 'error' : 'default'"
+					:status="errorMessage ? 'danger' : 'default'"
 					@input="handleInput"
 				/>
 			</div>
