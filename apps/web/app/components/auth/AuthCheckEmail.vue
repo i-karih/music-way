@@ -58,7 +58,13 @@
 	// TODO(api) заменить заглушку на вызов API
 	const handlerComplete = () => {
 		isCodeLoading.value = true
+
 		setTimeout(() => {
+			// Cycle through states: Idle → Invalid → Failed
+			const stateCount = Object.keys(AuthCodeState).length / 2
+			currentState.value = ((currentState.value + 1) %
+				stateCount) as AuthCodeState
+
 			isCodeLoading.value = false
 			codeInput.value?.reset()
 		}, 2000)
@@ -70,6 +76,7 @@
 
 	const handlerResendCode = () => {
 		restart()
+		currentState.value = AuthCodeState.Idle
 	}
 
 	onMounted(() => {

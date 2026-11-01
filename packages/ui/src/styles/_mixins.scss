@@ -45,23 +45,23 @@ $breakpoint-xl: 1920px;
 
 // Скрытый элемент для screen readers
 @mixin visually-hidden {
-  position: absolute;
-  opacity: 0;
-  width: 1px;
-  height: 1px;
-  pointer-events: none;
+	position: absolute;
+	opacity: 0;
+	width: 1px;
+	height: 1px;
+	pointer-events: none;
 }
 
 // Контейнер с направлением (vertical/horizontal)
 @mixin direction-container($gap: var(--spacing-150)) {
-  display: flex;
-  gap: $gap;
+	display: flex;
+	gap: $gap;
 
-  &--vertical {
-    flex-direction: column;
-  }
+	&--vertical {
+		flex-direction: column;
+	}
 
-  &--horizontal {
-    flex-wrap: wrap;
-  }
+	&--horizontal {
+		flex-wrap: wrap;
+	}
 }
