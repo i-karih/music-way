@@ -7,7 +7,7 @@
 		UIAlert
 	} from '@music-way/ui'
 	import { useCountdown, usePlural } from '~/composables'
-	import type {AuthStepEmit } from "~/types";
+	import type {AuthStepEmit } from '~/types'
 	import { AuthStep, AuthCodeState } from '~/constants'
 
 	const TIME_UNTIL_RESEND = 60
@@ -22,7 +22,7 @@
 
 	const {
 		email
-	} = defineProps<{email: string | number}>()
+	} = defineProps<{email: string}>()
 
 	const { plural } = usePlural()
 
@@ -64,7 +64,7 @@
 		restart()
 	}
 
-	onMounted(async () => {
+	onMounted( () => {
 		start()
 	})
 </script>
@@ -124,6 +124,7 @@
 			</div>
 			<div
 				v-else
+				role="status"
 				class="auth-check-email__checked"
 			>
 				<UISpinner

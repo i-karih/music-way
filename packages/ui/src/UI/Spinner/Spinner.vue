@@ -20,6 +20,7 @@
 		xmlns="http://www.w3.org/2000/svg"
 		viewBox="0 0 64 60"
 		fill="currentColor"
+		aria-hidden="true"
 		:style="{ width: computedSize, height: computedSize }"
 	>
 		<rect
@@ -100,6 +101,12 @@
 		}
 		50% {
 			transform: scaleY(0.4);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.bar {
+			animation: none;
 		}
 	}
 </style>

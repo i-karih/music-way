@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { UIButton, useNotifications } from '@music-way/ui'
+	import { UIButton, useToast } from '@music-way/ui'
 	definePageMeta({
 		layout: 'auth',
 	})
@@ -7,7 +7,7 @@
 	const {
 		message,
 		info
-	} = useNotifications()
+	} = useToast()
 </script>
 
 <template>

@@ -121,7 +121,7 @@
 				/>
 			</div>
 		</div>
-		<p
+		<div
 			v-if="message || slot.message"
 			:id="`${id}-message`"
 			class="ui-code-input__message text-body-m"
@@ -129,7 +129,7 @@
 			<slot name="message">
 				{{ message }}
 			</slot>
-		</p>
+		</div>
 	</div>
 </template>
 
