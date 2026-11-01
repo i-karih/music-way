@@ -113,7 +113,8 @@
 							v-if="currentState === AuthCodeState.Failed"
 							type="warning"
 						>
-							Код больше не действует: прошло 10 минут или закончились попытки
+							Код больше не действует: прошло 10 минут или закончились попытки.
+							Запросите новый.
 						</UIAlert>
 						<span v-else class="auth-check-email__message">
 							{{ currentMessage }}

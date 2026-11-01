@@ -214,13 +214,19 @@
 		}
 
 		&--disabled {
-			#{$self}__cell {
-				opacity: 0.4;
-				cursor: not-allowed;
-			}
+			#{$self} {
+				&__cell {
+					opacity: 0.4;
+					cursor: not-allowed;
+				}
 
-			#{$self}__group {
-				cursor: not-allowed;
+				&__group {
+					cursor: not-allowed;
+				}
+
+				&__native:disabled {
+					pointer-events: none;
+				}
 			}
 		}
 
