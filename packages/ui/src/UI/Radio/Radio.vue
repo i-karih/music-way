@@ -1,6 +1,5 @@
 <script setup lang="ts">
 	import type { RadioButtonProps } from './Radio.types'
-
 	import { computed, inject } from 'vue'
 
 	import { RadioContextKey } from './Radio.constants'

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 	import type { TabContainerProps, TabModel } from './Tab.types'
-
 	import { provide, toRef } from 'vue'
 
 	import { TabContextKey } from './Tab.constants'

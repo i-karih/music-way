@@ -1,6 +1,5 @@
 <script setup lang="ts">
 	import type { RadioContainerProps, RadioModel } from './Radio.types'
-
 	import { provide } from 'vue'
 
 	import { RadioContextKey } from './Radio.constants'

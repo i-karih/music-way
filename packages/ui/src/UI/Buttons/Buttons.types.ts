@@ -4,7 +4,9 @@ export type ButtonSize = 'small' | 'medium' | 'large'
 export type ButtonVariant = 'primary' | 'secondary'
 
 export type ButtonProps = {
-	/** Компонент ссылки (например NuxtLink). Работает только вместе с `to` */
+	/**
+	Link component, such as NuxtLink. Only works together with `to`.
+	*/
 	as?: Component
 	to?: string
 	href?: string

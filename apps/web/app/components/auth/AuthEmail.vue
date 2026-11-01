@@ -1,7 +1,7 @@
 <script setup lang="ts">
+	import { UIButton, UIInput } from '@music-way/ui'
 	import type { AuthStepEmit } from '~/types'
 
-	import { UIButton, UIInput } from '@music-way/ui'
 	import { AuthStep } from '~/constants'
 	import { debounce, isValidEmail } from '~/utils'
 

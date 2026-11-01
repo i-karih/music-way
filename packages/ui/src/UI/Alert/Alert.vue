@@ -1,6 +1,5 @@
 <script setup lang="ts">
 	import type { AlertProps, AlertSlots } from './Alert.types'
-
 	import { computed } from 'vue'
 
 	import Icon from '../Icons/Icon.vue'

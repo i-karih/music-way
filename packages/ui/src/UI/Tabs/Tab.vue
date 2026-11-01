@@ -1,6 +1,5 @@
 <script setup lang="ts">
 	import type { TabProps } from './Tab.types'
-
 	import { computed, inject } from 'vue'
 
 	import { TabContextKey } from './Tab.constants'

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 	import type { StepperProps } from './Stepper.types'
-
 	import { computed } from 'vue'
 
 	const { steps = [], total = 1 } = defineProps<StepperProps>()
@@ -8,11 +7,7 @@
 	const model = defineModel<number>({ required: true })
 
 	const currentSteps = computed(() => {
-		if (steps.length > 0) {
-			return steps.length
-		} else {
-			return total
-		}
+		return steps.length > 0 ? steps.length : total
 	})
 
 	const nextStep = () => {

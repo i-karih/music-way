@@ -1,7 +1,6 @@
 <script setup lang="ts">
 	import type { ButtonSlots, PrimitiveProps } from './Buttons.types'
 	import type { Component } from 'vue'
-
 	import { computed, inject } from 'vue'
 
 	import { UISpinner } from '../Spinner'
@@ -20,7 +19,7 @@
 
 	const slots = defineSlots<ButtonSlots>()
 
-	const injectedLinkComponent = inject(LinkComponentKey, undefined)
+	const injectedLinkComponent = inject(LinkComponentKey)
 
 	const component = computed<As>(() => {
 		if (to) return as ?? injectedLinkComponent ?? 'a'
@@ -32,8 +31,7 @@
 
 	const linkProps = computed(() => {
 		if (to) {
-			if (hasLinkComponent.value) return { to }
-			return { href: to }
+			return hasLinkComponent.value ? { to } : { href: to }
 		}
 		if (href)
 			return {

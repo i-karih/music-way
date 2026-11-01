@@ -1,14 +1,19 @@
-import eslint from '@eslint/js'
-import prettierConfig from '@vue/eslint-config-prettier/skip-formatting'
-import vueTsConfig from '@vue/eslint-config-typescript'
+import pluginJs from '@eslint/js'
+import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
+import {
+	defineConfigWithVueTs,
+	vueTsConfigs,
+} from '@vue/eslint-config-typescript'
 import gitignore from 'eslint-config-flat-gitignore'
+import pluginJsdoc from 'eslint-plugin-jsdoc'
 import perfectionist from 'eslint-plugin-perfectionist'
 import pluginPrettier from 'eslint-plugin-prettier/recommended'
-import regexp from 'eslint-plugin-regexp'
-import sonarjs from 'eslint-plugin-sonarjs'
-import unicorn from 'eslint-plugin-unicorn'
-import vue from 'eslint-plugin-vue'
-import tseslint from 'typescript-eslint'
+import pluginRegexp from 'eslint-plugin-regexp'
+import pluginSonarjs from 'eslint-plugin-sonarjs'
+import pluginUnicorn from 'eslint-plugin-unicorn'
+import pluginVue from 'eslint-plugin-vue'
+import { globalIgnores } from 'eslint/config'
+import pluginTs from 'typescript-eslint'
 
 // Nuxt/Vue auto-imports
 const nuxtGlobals = {
@@ -64,130 +69,137 @@ const nuxtGlobals = {
 	console: 'readonly',
 }
 
-export default [
-	// Игнорирование файлов из .gitignore
-	gitignore(),
+export default defineConfigWithVueTs(
 	{
+		name: 'app/files-to-lint',
+		files: ['**/*.{js,mjs,cjs,ts,mts,cts,vue}'],
+	},
+	gitignore(),
+	globalIgnores([
+		'**/node_modules',
+		'**/public',
+		'**/vendor',
+		'**/dist',
+		'**/.nuxt',
+		'**/.output',
+		'**/coverage/',
+		// Временно: API ещё нет, а стор пользователя пока пустой
+		'apps/web/app/plugins/api.ts',
+		'apps/web/app/composables/auth/useAuth.ts',
+		'apps/web/app/composables/api/useHttpClient.ts',
+		'apps/web/app/stores/user.ts',
+	]),
+
+	{
+		rules: {
+			camelcase: 'error',
+			'no-console': 'warn',
+			'no-debugger': 'warn',
+			'no-else-return': 'warn',
+			'prefer-const': 'error',
+			'max-depth': ['error', 3],
+			'max-params': ['error', 5],
+		},
+	},
+	pluginJs.configs.recommended,
+	pluginTs.configs.strict,
+	pluginTs.configs.stylistic,
+	{
+		rules: {
+			'@typescript-eslint/consistent-type-definitions': ['off', 'type'],
+		},
+	},
+	pluginRegexp.configs['flat/recommended'],
+	{
+		...pluginJsdoc.configs['flat/recommended-typescript'],
+		files: ['**/*.ts'],
 		ignores: [
-			'**/node_modules/**',
-			'**/.nuxt/**',
-			'**/.output/**',
-			'**/dist/**',
-			'**/.nitro/**',
-			'**/.cache/**',
+			'**/*.d.ts',
+			'**/stores/**',
+			'**/composables/**',
+			'**/uses/**',
+			'**/*.test.{js,ts,jsx,tsx}',
 		],
 	},
-
-	// Базовые конфиги
-	eslint.configs.recommended,
-	...tseslint.configs.recommended,
-	...vue.configs['flat/recommended'],
-	...vueTsConfig(),
-
-	// Плагины качества кода
-	sonarjs.configs.recommended,
-	regexp.configs['flat/recommended'],
-
-	// Unicorn
 	{
-		plugins: { unicorn },
 		rules: {
+			'jsdoc/check-alignment': 'off',
+		},
+	},
+
+	pluginUnicorn.configs.recommended,
+	{
+		rules: {
+			'unicorn/no-null': 'off',
+			'unicorn/import-style': 'off',
+			'unicorn/name-replacements': 'off',
+			'unicorn/prefer-top-level-await': 'off',
 			'unicorn/filename-case': [
 				'error',
 				{
 					cases: {
 						camelCase: true,
-						pascalCase: true,
 						kebabCase: true,
+						pascalCase: true,
 					},
 					ignore: ['^UI$'],
 				},
 			],
-			'unicorn/no-null': 'off',
-			'unicorn/prevent-abbreviations': 'off',
-			'unicorn/no-array-reduce': 'off',
-			'unicorn/no-array-for-each': 'off',
-			'unicorn/prefer-module': 'off',
-			'unicorn/prefer-top-level-await': 'off',
 		},
 	},
-
-	// Perfectionist (сортировка импортов)
+	pluginSonarjs.configs.recommended,
 	{
-		plugins: { perfectionist },
+		rules: {
+			'sonarjs/todo-tag': 'off',
+		},
+	},
+	{
+		plugins: {
+			perfectionist,
+		},
 		rules: {
 			'perfectionist/sort-imports': [
-				'error',
+				'warn',
 				{
-					type: 'natural',
-					order: 'asc',
 					groups: [
-						'type',
-						['builtin', 'external'],
-						'internal',
-						['parent', 'sibling', 'index'],
+						['builtin', 'external', 'type'],
+						['type-internal', 'internal'],
+						[
+							'parent',
+							'sibling',
+							'index',
+							'type-parent',
+							'type-sibling',
+							'type-index',
+						],
+						'ts-equals-import',
 						'unknown',
 					],
-					internalPattern: ['^@music-way/', '^~/'],
+					newlinesBetween: 1,
+					internalPattern: ['^~/.*', '^@/.*'],
 				},
-			],
-			'perfectionist/sort-named-imports': [
-				'error',
-				{ type: 'natural', order: 'asc' },
-			],
-			'perfectionist/sort-named-exports': [
-				'error',
-				{ type: 'natural', order: 'asc' },
 			],
 		},
 	},
 
-	// Глобальные переменные Nuxt
+	pluginVue.configs['flat/recommended'],
+	vueTsConfigs.recommended,
+	{
+		rules: {
+			'vue/multi-word-component-names': 'off',
+		},
+	},
+
+	// Автоимпорты Nuxt: TypeScript сам проверяет необъявленные имена
 	{
 		languageOptions: {
 			globals: nuxtGlobals,
 		},
-	},
-
-	// Парсер для .vue файлов
-	{
-		files: ['**/*.vue'],
-		languageOptions: {
-			parserOptions: {
-				parser: tseslint.parser,
-			},
-		},
-	},
-
-	// Правила проекта
-	{
 		rules: {
-			// TypeScript
-			'@typescript-eslint/no-unused-vars': [
-				'warn',
-				{ argsIgnorePattern: '^_' },
-			],
-			'@typescript-eslint/no-explicit-any': 'warn',
-
-			// Vue
-			'vue/multi-word-component-names': 'off',
-			'vue/no-v-html': 'off',
-			'vue/require-default-prop': 'off',
-
-			// General
-			'no-console': ['warn', { allow: ['warn', 'error'] }],
-			'no-debugger': 'warn',
-			'no-unused-vars': 'off',
-			'no-undef': 'off', // TypeScript handles this
-
-			// SonarJS — отключаем слишком строгие
-			'sonarjs/cognitive-complexity': 'off',
-			'sonarjs/no-duplicate-string': 'off',
-			'sonarjs/todo-tag': 'off',
+			'no-undef': 'off',
 		},
 	},
 
-	// Prettier — в конце, чтобы переопределить конфликтующие правила
-	prettierConfig,
-	pluginPrettier,
-]
+	skipFormatting,
+	pluginPrettier
+)

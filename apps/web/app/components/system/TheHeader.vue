@@ -1,7 +1,7 @@
 <script setup lang="ts">
-	import { NavigationsForStudents } from '@/constants'
-
 	import { ThemeToggle, UILogo } from '@music-way/ui'
+
+	import { NavigationsForStudents } from '@/constants'
 </script>
 
 <template>

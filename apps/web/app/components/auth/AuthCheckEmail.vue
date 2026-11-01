@@ -1,6 +1,4 @@
 <script setup lang="ts">
-	import type { AuthStepEmit } from '~/types'
-
 	import {
 		UIAlert,
 		UIButton,
@@ -8,6 +6,8 @@
 		UIInlineButton,
 		UISpinner,
 	} from '@music-way/ui'
+	import type { AuthStepEmit } from '~/types'
+
 	import { useCountdown, usePlural } from '~/composables'
 	import { AuthCodeState, AuthStep } from '~/constants'
 
@@ -61,7 +61,7 @@
 		setTimeout(() => {
 			isCodeLoading.value = false
 			codeInput.value?.reset()
-		}, 2_000)
+		}, 2000)
 	}
 
 	const handlerBackStep = () => {

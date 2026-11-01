@@ -5,7 +5,6 @@
 		InputProps,
 		InputSlots,
 	} from './Input.types'
-
 	import { computed, useId } from 'vue'
 	import { IMaskComponent } from 'vue-imask'
 

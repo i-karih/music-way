@@ -1,6 +1,5 @@
 <script setup lang="ts">
 	import type { RadioButtonCardProps } from './Radio.types'
-
 	import { computed, inject } from 'vue'
 
 	import Card from '../Card/Card.vue'

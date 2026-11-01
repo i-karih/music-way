@@ -5,6 +5,7 @@
 	"scripts": {
 		"dev": "pnpm --filter @music-way/web dev",
 		"build": "pnpm --filter @music-way/web build",
+		"typecheck": "pnpm --filter @music-way/web typecheck",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"format": "prettier --write '**/*.{js,ts,vue,json,md}'"

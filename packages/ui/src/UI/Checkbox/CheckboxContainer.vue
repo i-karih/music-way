@@ -3,7 +3,6 @@
 		CheckboxContainerProps,
 		CheckboxGroupValue,
 	} from './Checkbox.types'
-
 	import { provide } from 'vue'
 
 	import { CheckboxContextKey } from './Checkbox.constants'

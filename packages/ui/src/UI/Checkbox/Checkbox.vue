@@ -4,7 +4,6 @@
 		CheckboxProps,
 		CheckboxSlots,
 	} from './Checkbox.types'
-
 	import { Check } from 'lucide-vue-next'
 
 	import CheckboxPrimitive from './CheckboxPrimitive.vue'

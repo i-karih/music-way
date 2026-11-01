@@ -1,6 +1,5 @@
 import type { CheckboxGroupValue, CheckboxModel } from '../Checkbox.types'
 import type { Ref } from 'vue'
-
 import { computed, inject } from 'vue'
 
 import { CheckboxContextKey } from '../Checkbox.constants'

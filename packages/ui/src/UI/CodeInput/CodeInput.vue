@@ -1,6 +1,5 @@
 <script setup lang="ts">
 	import type { CodeInputProps, CodeInputSlot } from './CodeInput.types'
-
 	import { computed, ref, useId, watch } from 'vue'
 
 	const {
@@ -45,7 +44,7 @@
 	}
 
 	const onInput = () => {
-		code.value = code.value.replace(/\D/g, '').slice(0, length)
+		code.value = code.value.replaceAll(/\D/g, '').slice(0, length)
 		checkComplete()
 	}
 
