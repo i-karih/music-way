@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import type { HeaderTag } from './Modal.types'
 
-	const { tag, id } = defineProps<{ tag: HeaderTag, id: string }>()
+	const { tag, id } = defineProps<{ tag: HeaderTag; id: string }>()
 </script>
 
 <template>

@@ -22,42 +22,9 @@
 			consequatur culpa eaque et explicabo ipsum iusto magni nulla officiis
 			placeat reprehenderit temporibus, voluptates voluptatum. Asperiores atque
 			autem commodi earum eum exercitationem illum maxime, necessitatibus porro,
-			praesentium quam similique sit vero? Ex, explicabo iure minima nisi optioLorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur
-			consectetur corporis ex exercitationem expedita harum perferendis? Animi
-			architecto assumenda atque beatae dicta eius facere, fuga impedit
-			necessitatibus omnis sequi, tempora ut veritatis! Alias animi commodi
-			consequatur culpa eaque et explicabo ipsum iusto magni nulla officiis
-			placeat reprehenderit temporibus, voluptates voluptatum. Asperiores atque
-			autem commodi earum eum exercitationem illum maxime, necessitatibus porro,
-			praesentium quam similique sit vero? Ex, explicabo iure minima nisi optioLorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur
-			consectetur corporis ex exercitationem expedita harum perferendis? Animi
-			architecto assumenda atque beatae dicta eius facere, fuga impedit
-			necessitatibus omnis sequi, tempora ut veritatis! Alias animi commodi
-			consequatur culpa eaque et explicabo ipsum iusto magni nulla officiis
-			placeat reprehenderit temporibus, voluptates voluptatum. Asperiores atque
-			autem commodi earum eum exercitationem illum maxime, necessitatibus porro,
-			praesentium quam similique sit vero? Ex, explicabo iure minima nisi optioLorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur
-			consectetur corporis ex exercitationem expedita harum perferendis? Animi
-			architecto assumenda atque beatae dicta eius facere, fuga impedit
-			necessitatibus omnis sequi, tempora ut veritatis! Alias animi commodi
-			consequatur culpa eaque et explicabo ipsum iusto magni nulla officiis
-			placeat reprehenderit temporibus, voluptates voluptatum. Asperiores atque
-			autem commodi earum eum exercitationem illum maxime, necessitatibus porro,
-			praesentium quam similique sit vero? Ex, explicabo iure minima nisi optioLorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur
-			consectetur corporis ex exercitationem expedita harum perferendis? Animi
-			architecto assumenda atque beatae dicta eius facere, fuga impedit
-			necessitatibus omnis sequi, tempora ut veritatis! Alias animi commodi
-			consequatur culpa eaque et explicabo ipsum iusto magni nulla officiis
-			placeat reprehenderit temporibus, voluptates voluptatum. Asperiores atque
-			autem commodi earum eum exercitationem illum maxime, necessitatibus porro,
-			praesentium quam similique sit vero? Ex, explicabo iure minima nisi optioLorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur
-			consectetur corporis ex exercitationem expedita harum perferendis? Animi
-			architecto assumenda atque beatae dicta eius facere, fuga impedit
-			necessitatibus omnis sequi, tempora ut veritatis! Alias animi commodi
-			consequatur culpa eaque et explicabo ipsum iusto magni nulla officiis
-			placeat reprehenderit temporibus, voluptates voluptatum. Asperiores atque
-			autem commodi earum eum exercitationem illum maxime, necessitatibus porro,
-			praesentium quam similique sit vero? Ex, explicabo iure minima nisi optio
+			praesentium quam similitude sit vero? Ex, explicabo iure minima nisi
+			optioLorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur
+			consectetur corporis ex exercitationem expedita harum perferendis?
 			<template #footer>
 				<UIButton variant="secondary" @click="isModalOpen = !isModalOpen">
 					Close
