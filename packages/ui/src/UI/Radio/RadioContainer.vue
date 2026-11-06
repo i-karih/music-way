@@ -21,7 +21,7 @@
 </template>
 
 <style scoped lang="scss">
-	@use '../../styles/mixins' as *;
+	//@use '../../styles/mixins' as *;
 
 	.ui-radio-container {
 		@include direction-container;

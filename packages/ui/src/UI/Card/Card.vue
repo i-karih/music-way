@@ -19,29 +19,31 @@
 			{ 'ui-card--interactive': interactive },
 		]"
 	>
-		<div v-if="title || slots.header" class="ui-card__header">
-			<slot name="header">
-				<h2 class="ui-card__title text-heading-l">
-					{{ title }}
-				</h2>
-				<p
-					v-if="description || slots.description"
-					class="ui-card__description text-body-m"
-				>
-					<slot name="description">
-						{{ description }}
-					</slot>
-				</p>
-			</slot>
-		</div>
+		<slot name="card">
+			<div v-if="title || slots.header" class="ui-card__header">
+				<slot name="header">
+					<h2 class="ui-card__title text-heading-l">
+						{{ title }}
+					</h2>
+					<p
+						v-if="description || slots.description"
+						class="ui-card__description text-body-m"
+					>
+						<slot name="description">
+							{{ description }}
+						</slot>
+					</p>
+				</slot>
+			</div>
 
-		<div v-if="slots.default" class="ui-card__content">
-			<slot />
-		</div>
+			<div v-if="slots.default" class="ui-card__content">
+				<slot />
+			</div>
 
-		<div v-if="slots.footer" class="ui-card__footer">
-			<slot name="footer" />
-		</div>
+			<div v-if="slots.footer" class="ui-card__footer">
+				<slot name="footer" />
+			</div>
+		</slot>
 	</div>
 </template>
 
@@ -65,6 +67,13 @@
 		transition:
 			background-color 0.2s,
 			border-color 0.2s;
+
+		&__content {
+			display: flex;
+			flex-direction: column;
+
+			max-height: 100%;
+		}
 
 		&--interactive {
 			cursor: pointer;

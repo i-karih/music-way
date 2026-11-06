@@ -12,4 +12,5 @@ export type CardSlots = {
 	description?: Slot
 	default?: Slot
 	footer?: Slot
+	card?: Slot
 }

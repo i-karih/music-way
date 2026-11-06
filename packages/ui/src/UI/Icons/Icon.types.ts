@@ -9,6 +9,7 @@ import {
 	Mic2,
 	Music,
 	Sparkles,
+	X,
 } from 'lucide-vue-next'
 
 export const iconsMap = {
@@ -22,6 +23,14 @@ export const iconsMap = {
 	ClockAlert,
 	Sparkles,
 	Info,
+	X,
 } as const
 
 export type IconName = keyof typeof iconsMap
+
+export type IconSize = 'small' | 'medium' | 'large'
+
+export type IconProps = {
+	name: IconName
+	size?: IconSize
+}
