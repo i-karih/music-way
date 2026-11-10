@@ -6,30 +6,32 @@
 	})
 
 	const isModalOpen = ref<boolean>(false)
+
+	const toggleModal = () => {
+		isModalOpen.value = !isModalOpen.value
+	}
 </script>
 
 <template>
-	<h1>Register page (WIP)</h1>
+	<div class="register">
+		<h1 class="register__title text-heading-l">Регистрация в разработке</h1>
+		<p class="register__description text-body-m">
+			Страница регистрации пока в работе. Сейчас вход доступен по коду из
+			письма, без пароля. Ниже можно посмотреть модальное окно из
+			дизайн-системы.
+		</p>
+		<div class="register__actions">
+			<UIButton class="register__button" @click="toggleModal">
+				Открыть модальное окно
+			</UIButton>
+		</div>
 
-	<div>
-		<UIButton @click="isModalOpen = !isModalOpen"> Открыть </UIButton>
-
-		<UIModal v-model="isModalOpen" title="lorem ipsum dolor">
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur
-			consectetur corporis ex exercitationem expedita harum perferendis? Animi
-			architecto assumenda atque beatae dicta eius facere, fuga impedit
-			necessitatibus omnis sequi, tempora ut veritatis! Alias animi commodi
-			consequatur culpa eaque et explicabo ipsum iusto magni nulla officiis
-			placeat reprehenderit temporibus, voluptates voluptatum. Asperiores atque
-			autem commodi earum eum exercitationem illum maxime, necessitatibus porro,
-			praesentium quam similitude sit vero? Ex, explicabo iure minima nisi
-			optioLorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur
-			consectetur corporis ex exercitationem expedita harum perferendis?
+		<UIModal v-model="isModalOpen" title="Подтвердите почту">
+			Мы отправили письмо с кодом для входа. Если письма нет, проверьте папку
+			«Спам» или запросите код повторно.
 			<template #footer>
-				<UIButton variant="secondary" @click="isModalOpen = !isModalOpen">
-					Close
-				</UIButton>
-				<UIButton @click="isModalOpen = !isModalOpen"> Сохранить </UIButton>
+				<UIButton variant="secondary" @click="toggleModal"> Отмена </UIButton>
+				<UIButton @click="toogleModal"> Понятно </UIButton>
 			</template>
 		</UIModal>
 	</div>
@@ -38,5 +40,21 @@
 <style>
 	:root {
 		--auth-form-width: 860px;
+	}
+</style>
+
+<style scoped lang="scss">
+	.register {
+		&__title {
+			margin-bottom: var(--spacing-200);
+		}
+
+		&__description {
+			margin-bottom: var(--spacing-150);
+		}
+
+		&__button {
+			width: 100%;
+		}
 	}
 </style>
